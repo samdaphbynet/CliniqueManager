@@ -5,8 +5,9 @@ import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import {connectionDB} from './db/connectionDB.js';
 import cloudinary from "cloudinary";
+import messageRoutes from './routes/message.route.js'
+import registerRoutes from './routes/userRegister.route.js'
 
-import Message from "./models/messageSchema.js"
 
 
 const app = express();
@@ -38,6 +39,10 @@ app.use(fileUpload({
     useTempFiles: true,
     tempFileDir: "/tmp/"
 }))
+
+app.use("/", messageRoutes);
+app.use("/api/v1/message", messageRoutes);
+app.use("/api/v1/user", registerRoutes);
 
 connectionDB()
 
