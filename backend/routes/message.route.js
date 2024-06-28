@@ -1,5 +1,6 @@
 import express from 'express';
-import { sendMessage } from '../controller/messageController.js';
+import { getAllMessages, sendMessage } from '../controller/messageController.js';
+import { protectAdmin, protectPatient } from '../middlewares/protectRoute.js';
 
 const router = express.Router();
 
@@ -10,6 +11,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post("/patient", sendMessage)
+router.post("/patient", protectPatient, sendMessage)
+router.get("/patient/all", protectAdmin,getAllMessages)
 
 export default router;

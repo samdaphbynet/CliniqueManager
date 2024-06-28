@@ -7,7 +7,7 @@ import {connectionDB} from './db/connectionDB.js';
 import cloudinary from "cloudinary";
 import messageRoutes from './routes/message.route.js'
 import registerRoutes from './routes/userRegister.route.js'
-
+import apointmentRoutes from './routes/appointment.route.js'
 
 
 const app = express();
@@ -40,9 +40,9 @@ app.use(fileUpload({
     tempFileDir: "/tmp/"
 }))
 
-app.use("/", messageRoutes);
 app.use("/api/v1/message", messageRoutes);
 app.use("/api/v1/user", registerRoutes);
+app.use("/api/v1/appointment", apointmentRoutes);
 
 connectionDB()
 
