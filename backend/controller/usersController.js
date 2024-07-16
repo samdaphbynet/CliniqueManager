@@ -162,10 +162,28 @@ export const getPatient = async (req, res) => {
   }
 }
 
+// get all patients information
+export const getAllPatients = async (req, res) => {
+  try {
+    const patients = await User.find({role: "Patient"})
+    res.status(200).json({
+      success: true,
+      message: "All Patients fetched successfully",
+      patients
+    });
+  } catch (error) {
+    console.log("Error in getAllPatients", error);
+    res.status(500).json({
+      error: "Error internal server",
+      message: error.message,
+    });
+  }
+}
+
 // get All Doctors
 export const getAllDoctors = async (req, res) => {
   try {
-    const doctors = await User.find({role: "Doctor"})
+    const doctors = await Doctor.find({role: "Doctor"})
     res.status(200).json({
       success: true,
       message: "All Doctors fetched successfully",
@@ -180,10 +198,37 @@ export const getAllDoctors = async (req, res) => {
   }
 }
 
+// delete doctor by id
+export const deleteDoctor = async (req, res) => {
+  const { id } = req.params
+  try {
+    let doctor = await Doctor.findById(id)
+    if (!doctor) {
+      return res.status(404).json({ message: "Doctor not found" });
+    }
+
+    doctor = await Doctor.findByIdAndDelete(id);
+    res.status(200).json({
+      success: true,
+      message: "Doctor deleted successfully",
+      doctor
+    });
+  } catch (error) {
+    console.log("Error in deleteDoctor: ", error);
+    res.status(500).json({
+      error: "Error internal server",
+      message: error.message,
+    });
+  }
+}
+
 // Logout admin
 export const logoutAdmin = async (req, res) => {
   try {
-    res.clearCookie("AdminToken");
+    res.clearCookie("AdminToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production"
+    });
     res.status(200).json({
       success: true,
       message: "admin logged out successfully",

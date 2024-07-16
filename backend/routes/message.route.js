@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post("/patient", protectPatient, sendMessage)
-router.get("/patient/all", protectAdmin,getAllMessages)
+router.post("/patient", sendMessage)
+router.get("/patient/all",getAllMessages)
 
 export default router;

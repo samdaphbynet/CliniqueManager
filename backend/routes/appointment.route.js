@@ -4,9 +4,9 @@ import { protectAdmin, protectPatient } from '../middlewares/protectRoute.js';
 
 const router = express.Router();
 
-router.post("/appointment", protectPatient, appointControle)
-router.get("/all", protectAdmin, getAllAppointment)
-router.put("/update/:id", protectAdmin, updateAppointmentStatus)
+router.post("/appointment", (protectPatient || protectAdmin), appointControle)
+router.get("/all", getAllAppointment)
+router.put("/update/:id", updateAppointmentStatus)
 router.delete("/delete/:id", protectAdmin, deleteAppointment)
 
 export default router;

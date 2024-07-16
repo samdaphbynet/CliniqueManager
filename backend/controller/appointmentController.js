@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import Appointment from "../models/appointmentSchema.js";
 import Doctor from "../models/doctorSchema.js";
 import User from "../models/usersSchema.js";
@@ -15,76 +14,63 @@ export const appointControle = async (req, res) => {
     gender,
     appointment,
     department,
-    doctor,
+    doctor_firstName,
+    doctor_lastName,
     address,
     hasVisited,
   } = req.body;
   try {
     // check if all fields are valid
-    if (
-      !firstName ||
-      !lastName ||
-      !email ||
-      !phone ||
-      !birth ||
-      !gender ||
-      !department ||
-      !doctor ||
-      !address ||
-      !appointment
-    ) {
+
+
+    if (!firstName || !lastName || !email || !phone || !address || !appointment  || !birth || !gender || !department) {
       return res.status(400).json({
-        message: "Please fill all fields",
+        message: "Please enter a valid appointment",
       });
     }
 
-    // check if the id of doctor is valid
-    if (!mongoose.Types.ObjectId.isValid(doctor)) {
+    if (!doctor_lastName || !doctor_firstName ) {
       return res.status(400).json({
-        message: "Invalid doctor id",
+        message: "doctor_firstName ou doctor_lastName",
       });
     }
 
     // check if the doctor exist in the database
-    const doctorExist = await Doctor.findById(doctor);
+    const doctorExist = await Doctor.findOne({
+      firstName: doctor_firstName,
+      lastName: doctor_lastName,
+      role: "Doctor",
+    });
     if (!doctorExist) {
       return res.status(404).json({
         message: "Doctor not found",
       });
-    } else {
-      // check if the doctor has any appointments on the same day
-      const doctorAppointments = await Appointment.find({
-        doctor: doctorExist._id,
-        appointment: appointment,
-      });
-      if (doctorAppointments.length > 0) {
-        return res.status(400).json({
-          doctor: doctorExist.firstName,
-          message: `Doctor ${doctorExist.firstName} ${doctorExist.lastName} already has an appointment on this date`,
-        });
-      } else {
-        // create a new appointement
-        const newAppointement = await Appointment.create({
-          firstName,
-          lastName,
-          email,
-          phone,
-          birth,
-          gender,
-          appointment,
-          department,
-          doctor,
-          address,
-          hasVisited,
-          patient: req.user._id,
-        });
-        res.status(200).json({
-          success: true,
-          message: "Appointment created successfully",
-          newAppointement,
-        });
-      }
     }
+    
+    // create a new appointement
+    const newAppointement = await Appointment.create({
+      firstName,
+      lastName,
+      email,
+      phone,
+      birth,
+      gender,
+      doctor: {
+        firstName: doctor_firstName,
+        lastName: doctor_lastName,
+      },
+      appointment,
+      department,
+      address,
+      hasVisited,
+      doctorId: doctorExist._id,
+      patientId: req.user._id,
+    });
+    res.status(200).json({
+      success: true,
+      message: "Appointment created successfully",
+      newAppointement,
+    });
   } catch (error) {
     console.log("Error in appointControle: ", error);
     res.status(500).json({
