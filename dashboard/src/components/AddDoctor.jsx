@@ -1,0 +1,47 @@
+import { Box, Typography } from "@mui/material";
+import React from "react";
+import { IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
+
+const AddNewDoctor = ({ title }) => {
+    const navigate = useNavigate();
+
+    // add new doctor
+    const handleNewDoctor = async (e) => {
+        e.preventDefault();
+        navigate('/adddoctor')
+    };
+
+    return (
+        <Box 
+            width="200px" 
+            height="45px" 
+            display="flex" 
+            justifyContent="center" 
+            alignItems="center"   
+            borderRadius="10px"
+            backgroundColor= "#00A2FF"
+        >
+        <IconButton
+            sx={{
+                width: "100%",
+                height: "100%",
+                fontSize: "16px",
+                fontWeight: "bold",
+                "&:hover": {
+                    backgroundColor: "#00A2FF",
+                },
+            }}
+            area-label={title}
+            color="white"
+            onClick={handleNewDoctor}
+        >
+            <AddIcon sx={{fontSize: "20px"}} />
+            {title}
+        </IconButton>
+        </Box>
+    );
+};
+
+export default AddNewDoctor;
