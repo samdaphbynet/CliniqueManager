@@ -11,16 +11,12 @@ import {
   Select,
   TextField,
   Typography,
-  useTheme,
 } from "@mui/material";
 import { inputFormAppointment } from "../constants/inputFormFields";
-import { tokens } from "../styles/theme";
 import { department } from "../constants/mockData";
 import {toast} from 'react-toastify';
 
 const ModalAppointment = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
 
   const [appointment, setAppointment] = useState({
     firstName: "",
