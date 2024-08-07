@@ -10,7 +10,9 @@ import {
     logoutPatient,
     addNewDoctor,
     deleteDoctor,
-    getAllPatients
+    getAllPatients,
+    updateDoctor,
+    findDoctorById
 } from "../controller/usersController.js"
 import { protectAdmin, protectPatient } from '../middlewares/protectRoute.js';
 
@@ -28,6 +30,8 @@ router.get("/logoutadmin", logoutAdmin)
 router.post("/logoutpatient", protectPatient, logoutPatient)
 
 router.post("/addnewdoctor", protectAdmin, addNewDoctor)
+router.post("/updatedoctor/:id", updateDoctor)
+router.get("/getdoctor/:id", findDoctorById)
 router.delete("/deletedoctor/:id", deleteDoctor)
 
 export default router;
