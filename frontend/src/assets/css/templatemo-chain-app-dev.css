@@ -215,7 +215,6 @@ header
 
 .header-area {
   zoom: 0.9;
-  background-color: transparent;
   border-bottom: 1px solid rgba(42,42,42,0.2);
   position: fixed;
   top: 0;
@@ -231,7 +230,6 @@ header
 
 .header-area .main-nav {
   min-height: 99%;
-  background: white;
 }
 
 .header-area .main-nav .logo {
@@ -241,6 +239,10 @@ header
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
+}
+
+.header-area .main-nav .logo img {
+  width: 98px;
 }
 
 
@@ -686,20 +688,37 @@ register
   justify-content: space-between;
 }
 
+.remember {
+  display: flex;
+  margin-top: 30px;
+}
+
+.remember input[type="checkbox"] {
+  margin-right: 10px;
+  width: max-content;
+}
+
 /* form message  */
 
 .message_container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                  url("/public/bg_message.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
   width: 100%;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 10%;
+  padding: 6% 0 6% 0;
 }
 
 .message_container .message {
   padding: 20px;
+  margin-top: 40px;
   width: 60%;
   display: flex;
   justify-content: center;
@@ -710,10 +729,9 @@ register
 }
 
 .message_container h1 {
-  font-size: 40px;
+  font-size: 50px;
   font-weight: bold;
-  margin-bottom: 40px;
-  color: rgb(10, 151, 221);
+  color: rgb(255, 255, 255);
 }
 
 textarea {
@@ -900,7 +918,7 @@ Services Style
 */
 
 .services {
-  padding-top: 130px;
+  padding: 130px 0 130px 0;
   position: relative;
 }
 
@@ -948,24 +966,29 @@ Services Style
   margin: 0 auto;
 }
 
+/* service card  */
+
+.services_card .item {
+  display: flex;
+  justify-content: space-around;
+}
+
 .service-item {
   position: relative;
   z-index: 1;
   padding: 30px;
   box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 10px;
   border-top-right-radius: 50px;
   transition: all .3s;
 }
 
-.service-item .icon {
-  margin-left: 0px;
-  margin-bottom: 30px;
-  background-repeat: no-repeat;
-  width: 50px;
-  height: 50px;
-  transition: all .3s;
+.service-item img {
+  width: 100%;
+  height: 250px;
+  border-radius: 0px 30px 0px 0px;
+  margin-bottom: 20px;
 }
 
 .service-item h4 {
@@ -981,43 +1004,23 @@ Services Style
   margin-bottom: 20px;
 }
 
+.showMore {
+  background-color: #3a89ff;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.showMore i {
+  margin-left: 10px;
+}
+
 .service-item:hover h4,
 .service-item:hover p,
 .service-item:hover .text-button a {
   color: #fff;
-}
-
-.first-service .icon {
-  background-image: url(../../../service-icon-01.png);
-}
-
-.first-service:hover .icon {
-  background-image: url(../../../service-icon-hover-01.png);
-}
-
-.second-service .icon {
-  background-image: url(../../../service-icon-02.png);
-}
-
-.second-service:hover .icon {
-  background-image: url(../../../service-icon-hover-02.png);
-}
-
-
-.third-service .icon {
-  background-image: url(../../../service-icon-03.png);
-}
-
-.third-service:hover .icon {
-  background-image: url(../../../service-icon-hover-03.png);
-}
-
-.fourth-service .icon {
-  background-image: url(../../../service-icon-04.png);
-}
-
-.fourth-service:hover .icon {
-  background-image: url(../../../service-icon-hover-04.png);
 }
 
 .service-item:hover {
@@ -1036,7 +1039,8 @@ About Us
 */
 
 .about-us {
-  padding-top: 130px;
+  background-color: #f9fffe;
+  padding: 130px 0 130px 0;
   position: relative;
 }
 
