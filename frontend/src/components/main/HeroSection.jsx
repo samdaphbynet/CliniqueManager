@@ -1,10 +1,9 @@
 import React from "react";
 
 const HeroSection = () => {
+
   return (
-    <div
-      className="main-banner wow fadeIn"
-    >
+    <div id="home" className="main-banner wow fadeIn">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -28,11 +27,11 @@ const HeroSection = () => {
                           PRENDRE RENDEZ-VOUS <i className="fa fa-calendar"></i>
                         </a>
                       </div>
-                      {/* <div className="white-button scroll-to-section">
-                        <a href="#contact">
+                      <div className="white-button scroll-to-section">
+                        <a href="#message">
                           Contact <i className="fa fa-user"></i>
                         </a>
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -43,7 +42,7 @@ const HeroSection = () => {
                   data-wow-duration="1s"
                   data-wow-delay="0.5s"
                 >
-                  <img src="patient1.png" alt="" />
+                  <img src="patient1.png" alt="image_hero" />
                 </div>
               </div>
             </div>
