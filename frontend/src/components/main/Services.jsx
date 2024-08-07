@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { services } from "../../data/doctor";
 
 const Services = () => {
+  const [showMore, setShowMore] = useState({});
+
+  const handleShow = (id) => {
+    setShowMore((prev) => ({...prev, [id]: !prev[id]}));
+  }
+
   return (
     <div id="services" className="services section">
       <div className="container">
@@ -12,98 +19,38 @@ const Services = () => {
               data-wow-delay="0.5s"
             >
               <h4>
-                Amazing <em>Services &amp; Features</em> for you
+                A vos <em>côtés &amp; pour</em> votre santé
               </h4>
               <img src="heading-line-dec.png" alt="" />
               <p>
-                If you need the greatest collection of HTML templates for your
-                business, please visit{" "}
-                <a
-                  rel="nofollow"
-                  href="https://www.toocss.com/"
-                  target="_blank"
-                >
-                  TooCSS
-                </a>{" "}
-                Blog. If you need to have a contact form PHP script, go to{" "}
-                <a href="https://templatemo.com/contact" target="_parent">
-                  our contact page
-                </a>{" "}
-                for more information.
+                Des équipes dévouées et attentives, des praticiens compétents et
+                impliqués, un accès aux soins à la fois sûr et efficace : la
+                clinique de Toulouse met tout en œuvre pour vous garantir un
+                séjour agréable et une qualité des soins optimale.
               </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-3">
-            <div className="service-item first-service">
-              <div className="icon"></div>
-              <h4>App Maintenance</h4>
-              <p>
-                You are not allowed to redistribute this template ZIP file on
-                any other website.
-              </p>
-              <div className="text-button">
-                <a href="#">
-                  Read More <i className="fa fa-arrow-right"></i>
-                </a>
+      <div className="services_card">
+        <div className="row item">
+          {services.map((item) => (
+            <div key={item.id} className="col-lg-2">
+              <div className="service-item">
+                <img src={item.image} alt="image_services" />
+                <h4>{item.title}</h4>
+                <p>
+                  {showMore[item.id] ? item.content : `${item.content.substring(0, 60)}...`}
+                </p>
+                <div className="text-button">
+                  <button onClick={() => handleShow(item.id)} className="showMore">
+                    {showMore[item.id] ? "Reduire" : "Lire Plus"}{" "}
+                    <i className="fa fa-arrow-right"></i>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-lg-3">
-            <div className="service-item second-service">
-              <div className="icon"></div>
-              <h4>Rocket Speed of App</h4>
-              <p>
-                You are allowed to use the Chain App Dev HTML template. Feel
-                free to modify or edit this layout.
-              </p>
-              <div className="text-button">
-                <a href="#">
-                  Read More <i className="fa fa-arrow-right"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3">
-            <div className="service-item third-service">
-              <div className="icon"></div>
-              <h4>Multi Workflow Idea</h4>
-              <p>
-                If this template is beneficial for your work, please support us{" "}
-                <a
-                  rel="nofollow"
-                  href="https://paypal.me/templatemo"
-                  target="_blank"
-                >
-                  a little via PayPal
-                </a>
-                . Thank you.
-              </p>
-              <div className="text-button">
-                <a href="#">
-                  Read More <i className="fa fa-arrow-right"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3">
-            <div className="service-item fourth-service">
-              <div className="icon"></div>
-              <h4>24/7 Help &amp; Support</h4>
-              <p>
-                Lorem ipsum dolor consectetur adipiscing elit sedder
-                williamsburg photo booth quinoa and fashion axe.
-              </p>
-              <div className="text-button">
-                <a href="#">
-                  Read More <i className="fa fa-arrow-right"></i>
-                </a>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
