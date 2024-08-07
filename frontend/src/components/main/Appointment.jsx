@@ -5,7 +5,7 @@ import FormInformation from "./FormInformation";
 const Appointment = () => {
   const [motif, setMotif] = useState("");
   const [date, setDate] = useState("");
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(1);
 
   const handleSubmitDate = (e) => {
     e.preventDefault();
@@ -112,7 +112,7 @@ const Appointment = () => {
               <i className="fa fa-address-book"></i> Informations complémentaires
             </h6>
             {/* add more informations */}
-            <FormInformation />
+            <FormInformation date={date}/>
           </div>
         </div>
       </div>
