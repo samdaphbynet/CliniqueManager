@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import {useNavigate} from "react-router-dom"
 import axios from "axios";
 import { toast } from "react-toastify";
 
 const MessageForm = () => {
+  const navigate = useNavigate()
   const [message, setMessage] = useState({
     firstName: "",
     lastName: "",
@@ -29,7 +31,6 @@ const MessageForm = () => {
             }
         }
     ).then(res => {
-        console.log(res);
         toast.success(res.data.message)
         setMessage({
             firstName: "",
@@ -38,6 +39,7 @@ const MessageForm = () => {
             phone: "",
             message: "",
         });
+        navigate("/")
     }).catch(err => {
         console.log(err);
         toast.error(err.response.data.message)
@@ -46,14 +48,15 @@ const MessageForm = () => {
   };
 
   return (
-    <div className="message_container">
-        <h1>Send a Message</h1>
+    <div id="message" className="message_container">
+        <h1>Envoyer un message</h1>
       <div className="message">
         <div className="user_login">
           <form className="form_message" onSubmit={handleSubmit}>
-            <label>firstName</label>
+            <label>Nom de famille</label>
             <input
               value={message.firstName}
+              placeholder="Ex: Patric"
               onChange={(e) => {
                 setMessage({ ...message, firstName: e.target.value });
               }}
@@ -61,9 +64,10 @@ const MessageForm = () => {
               className="input"
             />
 
-            <label>lastName</label>
+            <label>Nom</label>
             <input
               value={message.lastName}
+              placeholder="Ex: Adrien"
               onChange={(e) => {
                 setMessage({ ...message, lastName: e.target.value });
               }}
@@ -71,9 +75,10 @@ const MessageForm = () => {
               className="input"
             />
 
-            <label>Email</label>
+            <label>Votre Email</label>
             <input
               value={message.email}
+              placeholder="Ex: example@example.com"
               onChange={(e) => {
                 setMessage({ ...message, email: e.target.value });
               }}
@@ -81,9 +86,10 @@ const MessageForm = () => {
               className="input"
             />
 
-            <label>Phone</label>
+            <label>Téléphone</label>
             <input
               value={message.phone}
+              placeholder="Ex: 0658648158"
               onChange={(e) => {
                 setMessage({ ...message, phone: e.target.value });
               }}
@@ -93,6 +99,7 @@ const MessageForm = () => {
             <label>Message</label>
             <textarea
               value={message.message}
+              placeholder="Votre message"
               onChange={(e) => {
                 setMessage({...message, message: e.target.value });
               }}
