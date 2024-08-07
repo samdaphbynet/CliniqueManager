@@ -317,3 +317,60 @@ export const addNewDoctor = async (req, res) => {
     
   }
 }
+
+// update doctor information by id
+export const updateDoctor = async (req, res) => {
+  const { id } = req.params
+  try {
+    let doctor = await Doctor.findById(id)
+    if (!doctor) {
+      return res.status(404).json({ message: "Doctor not found" });
+    }
+
+    const { firstName, lastName, email, phone, birth } = req.body;
+    // check if the email already existing
+    if (email) {
+      const existEmail = await Doctor.findOne({email, _id: {$ne: id}});
+      if (existEmail) {
+        return res.status(404).json({ message: "A doctor with this email already exist"});
+      }
+    }
+
+    if (firstName) doctor.firstName = firstName;
+    if (lastName) doctor.lastName = lastName;
+    if (email) doctor.email = email;
+    if (phone) doctor.phone = phone;
+    if (birth) doctor.birth = birth;
+    await doctor.save();
+    res.status(200).json({
+      success: true,
+      message: "Doctor updated successfully",
+      doctor,
+    });
+    
+  } catch (error) {
+    console.log("Error in update doctor controller", error)
+    res.status(500).json({
+      error: "Error internal server",
+      message: error.message,
+    });
+  }
+}
+
+// find doctor by id 
+export const findDoctorById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const doctor = await Doctor.findById(id)
+    if (!doctor) {
+      return res.status(404).json({ message: "Doctor not found" });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Doctor fetched successfully",
+      doctor,
+    });
+  } catch (error) {
+    
+  }
+} 
