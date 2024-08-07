@@ -5,49 +5,15 @@ const Footer = () => {
     <footer>
       <div className="container">
         <div className="row">
-          <div className="col-lg-8 offset-lg-2">
-            <div className="section-heading">
-              <h4>
-                Join our mailing list to receive the news &amp; latest trends
-              </h4>
-            </div>
-          </div>
-          <div className="col-lg-6 offset-lg-3">
-            <form id="search" action="#" method="GET">
-              <div className="row">
-                <div className="col-lg-6 col-sm-6">
-                  <fieldset>
-                    <input
-                      type="address"
-                      name="address"
-                      className="email"
-                      placeholder="Email Address..."
-                      autoComplete="on"
-                      required
-                    />
-                  </fieldset>
-                </div>
-                <div className="col-lg-6 col-sm-6">
-                  <fieldset>
-                    <button type="submit" className="main-button">
-                      Subscribe Now <i className="fa fa-angle-right"></i>
-                    </button>
-                  </fieldset>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-3">
+          <div className="col-lg-5">
             <div className="footer-widget">
-              <h4>Contact Us</h4>
-              <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
+              <h4>Contactez le center clinique</h4>
+              <p>53 Rue toulouse lautrec 31874, <br></br>Toulouse France</p>
               <p>
-                <a href="#">010-020-0340</a>
+                <a href="#">+33-588-64-84-66</a>
               </p>
               <p>
-                <a href="#">info@company.co</a>
+                <a href="#">clinique@cliniuqe.com</a>
               </p>
             </div>
           </div>
@@ -65,83 +31,27 @@ const Footer = () => {
                   <a href="#">About</a>
                 </li>
                 <li>
-                  <a href="#">Testimonials</a>
-                </li>
-                <li>
-                  <a href="#">Pricing</a>
-                </li>
-              </ul>
-              <ul>
-                <li>
-                  <a href="#">About</a>
-                </li>
-                <li>
-                  <a href="#">Testimonials</a>
-                </li>
-                <li>
-                  <a href="#">Pricing</a>
+                  <a href="/appointment">Appointment</a>
                 </li>
               </ul>
             </div>
           </div>
           <div className="col-lg-3">
             <div className="footer-widget">
-              <h4>Useful Links</h4>
-              <ul>
-                <li>
-                  <a href="#">Free Apps</a>
-                </li>
-                <li>
-                  <a href="#">App Engine</a>
-                </li>
-                <li>
-                  <a href="#">Programming</a>
-                </li>
-                <li>
-                  <a href="#">Development</a>
-                </li>
-                <li>
-                  <a href="#">App News</a>
-                </li>
-              </ul>
-              <ul>
-                <li>
-                  <a href="#">App Dev Team</a>
-                </li>
-                <li>
-                  <a href="#">Digital Web</a>
-                </li>
-                <li>
-                  <a href="#">Normal Apps</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-lg-3">
-            <div className="footer-widget">
-              <h4>About Our Company</h4>
+              <h4>Notre Clinique</h4>
               <div className="logo">
-                <img src="logo.png" alt="" />
+                <img src="logo1.png" alt="" />
               </div>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore.
+              Optimisez vos opérations cliniques avec notre plateforme intuitive et sécurisée. Gérez les dossiers des patients, planifiez les rendez-vous, et suivez les traitements avec facilité. Améliorez la qualité des soins et l'efficacité administrative dès aujourd'hui.
               </p>
             </div>
           </div>
           <div className="col-lg-12">
             <div className="copyright-text">
               <p>
-                Copyright © 2022 Chain App Dev Company. All Rights Reserved.
+                Copyright © 2024 Clinique de santé. All Rights Reserved.
                 <br />
-                Design:{" "}
-                <a
-                  href="https://templatemo.com/"
-                  target="_blank"
-                  title="css templates"
-                >
-                  TemplateMo
-                </a>
               </p>
             </div>
           </div>
