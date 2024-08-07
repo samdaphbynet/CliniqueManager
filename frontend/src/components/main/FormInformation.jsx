@@ -6,7 +6,8 @@ import { department } from "../../data/doctor";
 import { toast } from "react-toastify";
 
 
-const FormInformation = () => {
+const FormInformation = (props) => {
+
   const navigate = useNavigate();
   const [appoint, setAppoint] = useState({
     firstName: "",
@@ -19,9 +20,10 @@ const FormInformation = () => {
     doctor_lastName: "",
     department: "",
     address: "",
-    appointment: null,
+    appointment: new Date(),
     hasVisited: false,
   });
+
 
   // get name of all doctors
   const [doctorName, setDoctorName] = useState([]);
@@ -99,8 +101,7 @@ const FormInformation = () => {
 
   // handle appointment change
   const handleDateAppointment = (e) => {
-    const selectDate = new Date(e.target.value);
-    setAppoint({ ...appoint, appointment: selectDate });
+    setAppoint({ ...appoint, appointment: e.target.value });
   };
 
   return (
@@ -287,28 +288,12 @@ const FormInformation = () => {
           {/* appointment */}
           <div className="col-md-6 mb-3">
             <div className="input-group">
-              <select
-                value={
-                  appoint.appointment
-                    ? appoint.appointment.toISOString().slice(0, 10)
-                    : ""
-                }
+              <input
+                type="date"
+                placeholder="Date de Réservation"
+                value={props.date}
                 onChange={handleDateAppointment}
-                className="list_select"
-              >
-                <option value="2024-01-01">01 Jan 2024</option>
-                <option value="2024-02-02">02 Feb 2024</option>
-                <option value="2024-03-03">03 Mar 2024</option>
-                <option value="2024-04-04">04 Apr 2024</option>
-                <option value="2024-05-05">05 May 2024</option>
-                <option value="2024-06-06">06 Jun 2024</option>
-                <option value="2024-07-07">07 Jul 2024</option>
-                <option value="2024-08-08">08 Aug 2024</option>
-                <option value="2024-09-09">09 Sep 2024</option>
-                <option value="2024-10-10">10 Oct 2024</option>
-                <option value="2024-11-11">11 Nov 2024</option>
-                <option value="2024-12-12">12 Dec 2024</option>
-              </select>
+              />
             </div>
           </div>
         </div>
