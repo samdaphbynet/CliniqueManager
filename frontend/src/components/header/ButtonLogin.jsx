@@ -33,13 +33,13 @@ const ButtonLogin = () => {
       {isAuthenticated ? (
         <div className="gradient-button">
           <a href="/" onClick={handleLogout}>
-            <i className="fa fa-sign-in-alt"></i> Logout
+            <i className="fa fa-sign-in-alt"></i> Se déconnecter
           </a>
         </div>
       ) : (
         <div className="gradient-button">
           <a href="login">
-            <i className="fa fa-sign-in-alt"></i> Sign In Now
+            <i className="fa fa-sign-in-alt"></i> Connectez vous
           </a>
         </div>
       )}
