@@ -79,3 +79,31 @@ export const inputFormAppointment = [
         type: "text"
     },
 ]
+
+export const inputFormUpdateDoctor = [
+    {
+        name: 'firstName',
+        label: 'Nom',
+        type: "text"
+    },
+    {
+        name: 'lastName',
+        label: 'Prénom',
+        type: "text"
+    },
+    {
+        name: 'email',
+        label: 'Email',
+        type: "email"
+    },
+    {
+        name: 'phone',
+        label: 'Téléphone Mobile',
+        type: "text"
+    },
+    {
+        name: 'role',
+        label: 'Role de médecin',
+        type: "text"
+    },
+]
