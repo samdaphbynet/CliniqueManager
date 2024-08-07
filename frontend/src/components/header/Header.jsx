@@ -8,7 +8,20 @@ setTimeout(() => {
 }, 1000)
 
 const Header = () => {
-  const {isAuthenticated, user} = useContext(Context);
+  const {isAuthenticated} = useContext(Context);
+
+  const handleScroll = (e) => {
+    //console.log(window.pageYOffset)
+    const header = document.querySelector('.header-area');
+    if (window.pageYOffset > 0) {
+      header.style.backgroundColor = "#F1F1F1";
+    } else {
+      header.style.backgroundColor = "transparent"
+    }
+  }
+
+  window.addEventListener("scroll", handleScroll)
+
   return (
     <>
       <div id="js-preloader" className="js-preloader">
@@ -27,7 +40,7 @@ const Header = () => {
             <div className="col-12">
               <nav className="main-nav">
                 <a href="/" className="logo">
-                  <img src="logo.png" alt="Chain App Dev" />
+                  <img src="logo1.png" alt="Chain App Dev" />
                 </a>
                 <ul className="nav">
                   <li className="scroll-to-section">
@@ -42,7 +55,10 @@ const Header = () => {
                     <a href="#about">About</a>
                   </li>
                   <li className="scroll-to-section">
-                    <a href="appointment">Appointment</a>
+                    <a href="#message">Message</a>
+                  </li>
+                  <li className="scroll-to-section">
+                    <a href={isAuthenticated ? "/appointment" : "/login"}>Rendez-vous</a>
                   </li>
                   <li>
                     <ButtonLogin />
