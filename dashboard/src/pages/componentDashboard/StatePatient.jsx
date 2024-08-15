@@ -22,8 +22,7 @@ const StateDoctor = () => {
     };
     fetchPatients();
   }, []);
-
-  console.log(patient);
+  
   return (
     <Box
       gridColumn="span 3"
