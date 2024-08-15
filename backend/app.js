@@ -5,9 +5,13 @@ import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import {connectionDB} from './db/connectionDB.js';
 import cloudinary from "cloudinary";
+
+// import routes
 import messageRoutes from './routes/message.route.js'
 import registerRoutes from './routes/userRegister.route.js'
 import apointmentRoutes from './routes/appointment.route.js'
+import transactionRoutes from './routes/transaction.route.js'
+import faqRoutes from './routes/faq.route.js'
 
 
 const app = express();
@@ -43,6 +47,8 @@ app.use(fileUpload({
 app.use("/api/v1/message", messageRoutes);
 app.use("/api/v1/user", registerRoutes);
 app.use("/api/v1/appointment", apointmentRoutes);
+app.use("/api/v1/transaction", transactionRoutes);
+app.use("/api/v1/question", faqRoutes);
 
 connectionDB()
 
