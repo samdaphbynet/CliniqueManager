@@ -13,6 +13,11 @@ const Topbar = () => {
       display="flex" 
       justifyContent="space-between" 
       p={2} 
+      position="fixed"
+      width="100%" 
+      height={60}
+      zIndex={100}
+      paddingLeft="290px"
       backgroundColor="#EBEBEB"
       boxShadow="0 0px 20px 0px #A0A0A0"
     >

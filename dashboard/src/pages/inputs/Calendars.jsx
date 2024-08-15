@@ -80,7 +80,7 @@ const Calendars = () => {
 
 
   return (
-    <Box m="20px">
+    <Box m="80px 20px 20px 320px">
       <Box m="5px 20px" display="flex" justifyContent="space-between" alignItems="center">
         <Header title="Calendrier" subtitle="Gérer tout les rendez-vous de vous patients" />
         <ModalAppointment />

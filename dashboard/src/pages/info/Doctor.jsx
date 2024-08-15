@@ -134,7 +134,7 @@ const Doctor = () => {
   }));
 
   return (
-    <Box m="20px 30px">
+    <Box m="80px 30px" ml="300px">
       <Box
         display="flex"
         justifyContent="space-between"

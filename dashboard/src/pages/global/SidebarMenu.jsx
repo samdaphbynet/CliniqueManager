@@ -38,6 +38,12 @@ const SidebarMenu = () => {
   return (
     <Box
       sx={{
+        width: "250px",
+        height: "100vh",
+        position: "fixed",
+        zIndex: "1000",
+        top: 0,
+        left: 0,
         "& .pro-sidebar-inner": {
           background: `#EBEBEB !important`,
         },
@@ -60,7 +66,6 @@ const SidebarMenu = () => {
         <Menu iconShape="square">
 
           {/* LOGO AND MENU ICON */}
-          {/* 🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧 */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}

@@ -40,9 +40,9 @@ const Messages = () => {
 
     }))
   return (
-    <Box m="30px">
+    <Box m="80px 30px 30px 320px">
         <Header title="Boite de réception" subtitle="liste de tout les messages" />
-        <Box m="15px 0 0 0" height="70vh"
+        <Box mt="10px" height="75vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -73,7 +73,6 @@ const Messages = () => {
             <DataGrid 
             sx={{
                 fontSize: "14px",
-                p: "8px",
             }}
             rows={rows}
             columns={columns}/>
