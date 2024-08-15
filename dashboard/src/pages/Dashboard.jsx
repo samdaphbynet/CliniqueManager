@@ -1,45 +1,54 @@
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { Header, ProgressCircle, LineChart, BarChart } from "../components";
 import { Box, Button, IconButton, Typography } from "@mui/material";
-import { mockTransactions } from "../constants/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import { Context } from "../index";
+
 import StateEmail from './componentDashboard/StateEmail';
 import StateDoctor from './componentDashboard/StateDoctor';
 import StatePatient from './componentDashboard/StatePatient';
 import StateAppointment from './componentDashboard/StateAppointment';
+import Transactions from "./componentDashboard/Transactions";
+
+import {ReactToPrint} from "react-to-print";
+
 
 const Dashboard = () => {
   const { user } = useContext(Context);
+  const ref = useRef();
 
   return (
-    <Box m="20px">
+    <Box m="40px" mt="80px" marginLeft="300px">
 
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-
         <Header title="DASHBOARD" subtitle={`Bienvenu ${user.firstName} - ${user.lastName} dans votre dashboard`} />
-
         {/* download button */}
         <Box>
-          <Button
-            sx={{
-              backgroundColor: "#008CFF",
-              color: "white",
-              fontSize: "14px",
-              fontWeight: "bold",
-              padding: "10px 20px",
-            }}
-          >
-            <DownloadOutlinedIcon sx={{ mr: "10px" }} />
-            Download Reports
-          </Button>
+          <ReactToPrint
+            trigger={() => <Button
+              sx={{
+                backgroundColor: "#008CFF",
+                color: "white",
+                fontSize: "14px",
+                fontWeight: "bold",
+                padding: "10px 20px",
+              }}
+            >
+              <DownloadOutlinedIcon sx={{ mr: "10px" }} />
+              Télécharger le raport
+            </Button>}
+            content={() => ref.current}
+            documentTitle = "Statistique de clinique Toulouse"
+            pageStyle = "print"
+          />
+          
         </Box>
-
       </Box>
 
       {/* GRID & CHARTS */}
       <Box
+        ref={ref}
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="135px"
@@ -58,8 +67,9 @@ const Dashboard = () => {
           backgroundColor="#EBEBEB"
           boxShadow="0 0px 20px 0px #A0A0A0"
         >
+          {/* header line chart */}
           <Box
-            mt="25px"
+            mt="20px"
             p="0 30px"
             display="flex "
             justifyContent="space-between"
@@ -71,14 +81,14 @@ const Dashboard = () => {
                 fontWeight="600"
                 color="#000000"
               >
-                Revenue Generated
+                Revenus générés
               </Typography>
               <Typography
                 variant="h3"
                 fontWeight="bold"
                 color="#000000"
               >
-                $59,342.32
+                59,342.32€
               </Typography>
             </Box>
             <Box>
@@ -93,70 +103,19 @@ const Dashboard = () => {
             <LineChart isDashboard={true} />
           </Box>
         </Box>
-
-        <Box
-          gridColumn="span 4"
-          gridRow="span 4"
-          backgroundColor="#EBEBEB"
-          overflow="auto"
-          boxShadow="0 0px 20px 0px #A0A0A0"
-        >
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            borderBottom={`4px solid #00AEFF`}
-            colors="#000000"
-            p="15px"
-          >
-            <Typography color="#000000" variant="h5" fontWeight="600">
-              Recent Transactions
-            </Typography>
-          </Box>
-          {mockTransactions.map((transaction, i) => (
-            <Box
-              key={`${transaction.txId}-${i}`}
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              borderBottom={`4px solid #00AEFF`}
-              p="15px"
-            >
-              <Box>
-                <Typography
-                  color="#0077FF"
-                  variant="h5"
-                  fontWeight="600"
-                >
-                  {transaction.txId}
-                </Typography>
-                <Typography color="#000000">
-                  {transaction.user}
-                </Typography>
-              </Box>
-              <Box color="#575757">{transaction.date}</Box>
-              <Box
-                backgroundColor="#00FFFF"
-                color="#000000"
-                p="5px 10px"
-                borderRadius="4px"
-              >
-                ${transaction.cost}
-              </Box>
-            </Box>
-          ))}
-        </Box>
+        {/* transactions */}
+        <Transactions />
 
         {/* 🟨🟨🟨🟨🟨🟨 ROW 3 🟨🟨🟨🟨🟨🟨 */}
         <Box
-          gridColumn="span 4"
+          gridColumn="span 8"
           gridRow="span 2"
           backgroundColor="#EBEBEB"
           p="30px"
           boxShadow="0 0px 20px 0px #A0A0A0"
         >
           <Typography color="#000000" variant="h5" fontWeight="600">
-            Campaign
+            Campagne
           </Typography>
           <Box
             display="flex"
@@ -170,15 +129,15 @@ const Dashboard = () => {
               color="#000000"
               sx={{ mt: "15px" }}
             >
-              $48,352 revenue generated
+              48 352€ de revenus générés
             </Typography>
-            <Typography color="#5F5F5F">Includes extra misc expenditures and costs</Typography>
+            <Typography color="#5F5F5F">Comprend diverses dépenses et coûts supplémentaires</Typography>
           </Box>
         </Box>
 
         <Box
-          gridColumn="span 4"
-          gridRow="span 2"
+          gridColumn="span 8"
+          gridRow="span 3"
           backgroundColor="#EBEBEB"
           boxShadow="0 0px 20px 0px #A0A0A0"
         >
@@ -190,7 +149,7 @@ const Dashboard = () => {
           >
             Sales Quantity
           </Typography>
-          <Box height="250px" mt="-20px">
+          <Box height="350px" mt="-20px" ml="-280px">
             <BarChart isDashboard={true} />
           </Box>
         </Box>
