@@ -80,6 +80,24 @@ export const inputFormAppointment = [
     },
 ]
 
+export const inputFormTransaction = [
+    {
+        name: "user",
+        label: "Patient",
+        type: "text"
+    },
+    {
+        name: "date",
+        label: "La Date",
+        type: "date"
+    },
+    {
+        name: "cost",
+        label: "Montant",
+        type: "string"
+    }
+]
+
 export const inputFormUpdateDoctor = [
     {
         name: 'firstName',
