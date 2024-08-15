@@ -9,9 +9,7 @@ import {
   Messages,
   Bar,
   FAQ,
-  Geography,
   Line,
-  Pie,
   SidebarMenu,
   Topbar,
 } from "./pages";
@@ -93,11 +91,8 @@ const App = () => {
                     <Route path="/appointment" element={<Appointment />} />
                     <Route path="/calendar" element={<Calendars />} />
                     <Route path="/message" element={<Messages />} />
-
                     <Route path="/bar" element={<Bar />} />
-                    <Route path="/pie" element={<Pie />} />
                     <Route path="/line" element={<Line />} />
-                    <Route path="/geography" element={<Geography />} />
                     <Route path="/faq" element={<FAQ />} />
                   </>
                 ) : (
