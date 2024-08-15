@@ -48,19 +48,9 @@ export const sidebarMenu = [
         path: '/bar',
     },
     {
-        title: 'Pie Chart',
-        icon: PieChartOutlineOutlinedIcon,
-        path: '/pie',
-    },
-    {
         title: 'Line Chart',
         icon: TimelineOutlinedIcon,
         path: '/line',
-    },
-    {
-        title: 'Geography Chart',
-        icon: MapOutlinedIcon,
-        path: '/geography',
     },
     {
         title: 'FAQ Page',
