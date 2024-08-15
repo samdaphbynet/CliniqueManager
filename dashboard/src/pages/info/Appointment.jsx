@@ -122,8 +122,16 @@ const Appointment = () => {
     lastName: app.lastName,
     email: app.email,
     phone: app.phone,
-    birth: app.birth,
-    appointment: app.appointment,
+    birth: new Date(app.birth).toLocaleDateString("fr-FR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }),
+    appointment: new Date(app.appointment).toLocaleDateString("fr-FR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }),
     hasVisited: app.hasVisited,
     doctor: {
       firstName: app.doctor.firstName,
@@ -135,7 +143,7 @@ const Appointment = () => {
 
   // row - columns --> data display...
   return (
-    <Box m="20px">
+    <Box m="20px 20px 20px 320px">
       <Header title="RENDEZ-VOUS" subtitle="Liste de tout les rendez-vous" />
 
       <Box
@@ -169,7 +177,11 @@ const Appointment = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={rows} columns={columns} />
+        <DataGrid 
+          checkboxSelection 
+          rows={rows} 
+          columns={columns}
+        />
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
