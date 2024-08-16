@@ -17,7 +17,7 @@ const MessageForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    await axios.post("/api/v1/message/patient", 
+    await axios.post("https://clinique-manager-api.vercel.app/api/v1/message/patient", 
         {
             firstName: message.firstName, 
             lastName: message.lastName,
