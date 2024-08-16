@@ -24,8 +24,6 @@ function App() {
       } catch (error) {
           setIsAuthenticated(false)
           setUser({})
-          toast.error(error.response?.data?.message || "An error occurred");
-          console.log(error.response.data.message)
       }
     }
     fetchUser()
