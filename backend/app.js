@@ -44,7 +44,7 @@ app.use(fileUpload({
     tempFileDir: "/tmp/"
 }))
 
-app.get("/", (res, req) => {
+app.get("/", (req, res) => {
     res.json("server runing...")
 })
 
