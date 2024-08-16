@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/user/getpatient", {withCredentials: true})
+        const response = await axios.get("https://clinique-manager-6ts4.vercel.app/api/v1/user/getpatient", {withCredentials: true})
           setIsAuthenticated(true)
           setUser(response.data.user)
       } catch (error) {

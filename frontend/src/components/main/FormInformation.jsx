@@ -31,7 +31,7 @@ const FormInformation = (props) => {
     const fetchDoctor = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/user/doctor"
+          "https://clinique-manager-6ts4.vercel.app/api/v1/user/doctor"
         );
         setDoctorName(response.data.doctors);
       } catch (error) {
@@ -47,7 +47,7 @@ const FormInformation = (props) => {
     try {
       axios
         .post(
-          "http://localhost:5000/api/v1/appointment/appointment",
+          "https://clinique-manager-6ts4.vercel.app/api/v1/appointment/appointment",
           {
             firstName: appoint.firstName,
             lastName: appoint.lastName,
