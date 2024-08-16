@@ -15,7 +15,7 @@ const ButtonLogin = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://clinique-manager-6ts4.vercel.app/api/v1/user/logoutpatient",
+        "https://clinique-manager-api.vercel.app/api/v1/user/logoutpatient",
         {},
         { withCredentials: true }
       );

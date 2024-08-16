@@ -47,7 +47,7 @@ const FormInformation = (props) => {
     try {
       axios
         .post(
-          "https://clinique-manager-6ts4.vercel.app/api/v1/appointment/appointment",
+          "https://clinique-manager-api.vercel.app/api/v1/appointment/appointment",
           {
             firstName: appoint.firstName,
             lastName: appoint.lastName,

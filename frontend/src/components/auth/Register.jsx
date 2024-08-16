@@ -21,7 +21,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://clinique-manager-6ts4.vercel.app/api/v1/user/register", 
+      const res = await axios.post("https://clinique-manager-api.vercel.app/api/v1/user/register", 
         {
           firstName: formRegister.firstName, 
           lastName: formRegister.lastName,
