@@ -1,17 +1,15 @@
-import Home from "./components/main/Home";
+import { useContext, useEffect } from "react";
+import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Appointment from "./components/main/Appointment";
-
-import { ToastContainer } from "react-toastify";
-
-import "react-toastify/dist/ReactToastify.css";
+import Home from "./components/main/Home";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { Context } from "./main";
-import { useContext, useEffect } from "react";
-import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 
@@ -26,11 +24,12 @@ function App() {
       } catch (error) {
           setIsAuthenticated(false)
           setUser({})
+          toast.error(error.response?.data?.message || "An error occurred");
           console.log(error.response.data.message)
       }
     }
     fetchUser()
-  }, [isAuthenticated])
+  }, [])
 
   return (
     <Router>
