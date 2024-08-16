@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     await axios
       .post(
-        "https://clinique-manager-api.vercel.app/api/v1/user/login",
+        "/api/v1/user/login",
         {
           email: formLogin.email,
           password: formLogin.password,
