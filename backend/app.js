@@ -44,6 +44,10 @@ app.use(fileUpload({
     tempFileDir: "/tmp/"
 }))
 
+app.get("/", (res, req) => {
+    res.json("server runing...")
+})
+
 app.use("/api/v1/message", messageRoutes);
 app.use("/api/v1/user", registerRoutes);
 app.use("/api/v1/appointment", apointmentRoutes);
