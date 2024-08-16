@@ -225,10 +225,7 @@ export const deleteDoctor = async (req, res) => {
 // Logout admin
 export const logoutAdmin = async (req, res) => {
   try {
-    res.clearCookie("AdminToken", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production"
-    });
+    res.clearCookie("AdminToken");
     res.status(200).json({
       success: true,
       message: "admin logged out successfully",

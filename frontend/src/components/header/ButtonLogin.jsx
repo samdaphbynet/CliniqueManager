@@ -11,11 +11,12 @@ const ButtonLogin = () => {
 
   const navigate = useNavigate();
 
+  // handle logout events
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "/api/v1/user/logoutpatient",
+        "https://clinique-manager-api.vercel.app/api/v1/user/logoutpatient",
         {},
         { withCredentials: true }
       );
