@@ -27,7 +27,7 @@ function App() {
       }
     }
     fetchUser()
-  }, [isAuthenticated])
+  }, [])
 
   return (
     <Router>
