@@ -31,7 +31,7 @@ const FormInformation = (props) => {
     const fetchDoctor = async () => {
       try {
         const response = await axios.get(
-          "https://clinique-manager-6ts4.vercel.app/api/v1/user/doctor"
+          "https://clinique-manager-api.vercel.app/api/v1/user/doctor"
         );
         setDoctorName(response.data.doctors);
       } catch (error) {
