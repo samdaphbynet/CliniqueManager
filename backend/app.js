@@ -35,13 +35,7 @@ cloudinary.v2.config({
 app.use(cors({
     origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-    optionsSuccessStatus: 200,
-    preflightContinue: true,
-    exposedHeaders: ["Content-Length", "Content-Range"],
-    maxAge: 3600,
-    secure: process.env.NODE_ENV === "production"
+    credentials: true
 }));
 
 // configure fileupload middleware
