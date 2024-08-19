@@ -10,7 +10,7 @@ export const generateTokenAndSetCookie = (user, res) => {
     // set cookie
     res.cookie(tokenName, token, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "Strict",
       maxAge: 15 * 24 * 60 * 60 * 1000,
       secure: true,
     });
