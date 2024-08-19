@@ -131,6 +131,12 @@ export const addNewAdmin = async (req, res) => {
 // get admin information
 export const getAdmin = async (req, res) => {
   try {
+    if (!req.user) {
+      return res.status(400).json({
+        success: false,
+        message: "No user information admin available",
+      });
+    }
     res.status(200).json({
       success: true,
       message: "Admin information fetched successfully",
@@ -148,6 +154,12 @@ export const getAdmin = async (req, res) => {
 // get Patient information
 export const getPatient = async (req, res) => {
   try {
+    if (!req.user) {
+      return res.status(400).json({
+        success: false,
+        message: "No user information available",
+      });
+    }
     res.status(200).json({
       success: true,
       message: "Patient information fetched successfully",
@@ -156,6 +168,7 @@ export const getPatient = async (req, res) => {
   } catch (error) {
     console.log("Error in getPatient: ", error);
     res.status(500).json({
+      success: false,
       error: "Error internal server",
       message: error.message,
     });
