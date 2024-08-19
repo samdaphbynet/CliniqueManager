@@ -264,7 +264,11 @@ export const logoutAdmin = async (req, res) => {
 // logout Patient
 export const logoutPatient = async (req, res) => {
   try {
-    res.clearCookie("PatientToken");
+    res.clearCookie("PatientToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== "production",
+      sameSite: "None",
+    });
     res.status(200).json({
       success: true,
       message: "patient logged out successfully",
