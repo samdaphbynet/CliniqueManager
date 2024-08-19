@@ -39,7 +39,7 @@ export const services = [
   { 
     id: 1, 
     title: "Service de Médecine Générale", 
-    image: "generale.jpg", 
+    image: "generale.webp", 
     content: "Le service de médecine générale constitue la pierre angulaire de toute clinique de santé, offrant des soins de santé primaires complets. Nos médecins généralistes sont dévoués à fournir des examens de routine, diagnostiquer et traiter les maladies courantes, et orienter les patients vers des spécialistes au besoin. Nous nous engageons à maintenir votre bien-être général et à vous accompagner dans la prévention des maladies." },
   { 
     id: 2, 
@@ -49,7 +49,7 @@ export const services = [
   { 
     id: 3, 
     title: "Service de Gynécologie et Obstétrique", 
-    image: "gyneco-obstetrique.jpg", 
+    image: "gyneco-obstetrique.webp",
     content: "Le service de gynécologie et d'obstétrique de notre clinique offre des soins spécialisés pour la santé reproductive des femmes. De la contraception aux soins prénatals et postnatals, en passant par le suivi des grossesses, nos gynécologues et obstétriciens fournissent un soutien complet. Nous nous engageons à assurer la santé et le bien-être de nos patientes à chaque étape de leur vie reproductive." },
   { 
     id: 4, 

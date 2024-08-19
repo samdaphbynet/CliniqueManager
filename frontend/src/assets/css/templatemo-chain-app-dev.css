@@ -1194,7 +1194,7 @@ Footer Style
 */
 
 footer {
-  background-image: url(../../../footer-bg.png);
+  background-image: url(../../../footer-bg.webp);
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;

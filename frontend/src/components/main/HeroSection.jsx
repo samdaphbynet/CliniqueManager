@@ -42,7 +42,7 @@ const HeroSection = () => {
                   data-wow-duration="1s"
                   data-wow-delay="0.5s"
                 >
-                  <img src="patient1.png" alt="image_hero" />
+                  <img src="patient1.webp" alt="image_hero" />
                 </div>
               </div>
             </div>

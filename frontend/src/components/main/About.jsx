@@ -43,7 +43,7 @@ const About = () => {
           </div>
           <div className="col-lg-6">
             <div className="right-image">
-              <img src="about_right.png" alt=""/>
+              <img src="about_right.webp" alt="image about"/>
             </div>
           </div>
         </div>
