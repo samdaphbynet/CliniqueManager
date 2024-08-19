@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
-import {connectionDB} from './db/connectionDB.js';
 import cloudinary from "cloudinary";
+import {connectionDB} from './db/connectionDB.js';
 
 // import routes
 import messageRoutes from './routes/message.route.js'
@@ -13,16 +13,15 @@ import apointmentRoutes from './routes/appointment.route.js'
 import transactionRoutes from './routes/transaction.route.js'
 import faqRoutes from './routes/faq.route.js'
 
+// config variable environment
+dotenv.config({
+    path: "./config/config.env",
+})
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
-
-// config variable environment
-dotenv.config({
-    path: "./config/config.env",
-})
 
 // configure cloudinary
 cloudinary.v2.config({
@@ -48,12 +47,13 @@ app.get("/", (req, res) => {
     res.json("server runing...")
 })
 
+// use routes
 app.use("/api/v1/message", messageRoutes);
 app.use("/api/v1/user", registerRoutes);
 app.use("/api/v1/appointment", apointmentRoutes);
 app.use("/api/v1/transaction", transactionRoutes);
 app.use("/api/v1/question", faqRoutes);
 
-connectionDB()
+connectionDB();
 
 export default app;
