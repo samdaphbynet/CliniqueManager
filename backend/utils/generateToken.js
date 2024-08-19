@@ -10,9 +10,9 @@ export const generateTokenAndSetCookie = (user, res) => {
     // set cookie
     res.cookie(tokenName, token, {
       httpOnly: true,
-      sameSite: "Strict",
       maxAge: 15 * 24 * 60 * 60 * 1000,
-      secure: true,
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+      secure: process.env.NODE_ENV === 'production',
     });
     return token;
   } catch (error) {
