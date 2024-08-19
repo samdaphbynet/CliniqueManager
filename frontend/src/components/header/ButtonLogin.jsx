@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const ButtonLogin = () => {
   const [show, setShow] = useState(false);
 
-  const { isAuthenticated, setIsAuthenticated } = useContext(Context);
+  const { isAuthenticated, setIsAuthenticated, baseUrl} = useContext(Context);
 
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const ButtonLogin = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://clinique-manager-api.vercel.app/api/v1/user/logoutpatient",
+        `${baseUrl}/api/v1/user/logoutpatient`,
         {},
         { withCredentials: true }
       );

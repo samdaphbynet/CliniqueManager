@@ -15,12 +15,12 @@ axios.defaults.withCredentials = true;
 
 function App() {
 
-  const {isAuthenticated, setIsAuthenticated, setUser} = useContext(Context)
+  const {isAuthenticated, setIsAuthenticated, setUser, baseUrl} = useContext(Context)
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("https://clinique-manager-api.vercel.app/api/v1/user/getpatient", {withCredentials: true})
+        const response = await axios.get(`${baseUrl}/api/v1/user/getpatient`, {withCredentials: true})
           setIsAuthenticated(true)
           setUser(response.data.user)
       } catch (error) {

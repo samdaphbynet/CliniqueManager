@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./main.css";
 import { department } from "../../data/doctor";
 import { toast } from "react-toastify";
+import { Context } from "../../main";
 
 
 const FormInformation = (props) => {
-
+  
+  const {baseUrl} = useContext(Context)
   const navigate = useNavigate();
   const [appoint, setAppoint] = useState({
     firstName: "",
@@ -24,14 +26,13 @@ const FormInformation = (props) => {
     hasVisited: false,
   });
 
-
   // get name of all doctors
   const [doctorName, setDoctorName] = useState([]);
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
         const response = await axios.get(
-          "https://clinique-manager-api.vercel.app/api/v1/user/doctor"
+          `${baseUrl}/api/v1/user/doctor`
         );
         setDoctorName(response.data.doctors);
       } catch (error) {
@@ -47,7 +48,7 @@ const FormInformation = (props) => {
     try {
       axios
         .post(
-          "https://clinique-manager-api.vercel.app/api/v1/appointment/appointment",
+          `${baseUrl}/api/v1/appointment/appointment`,
           {
             firstName: appoint.firstName,
             lastName: appoint.lastName,

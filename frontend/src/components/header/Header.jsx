@@ -11,7 +11,6 @@ const Header = () => {
   const {isAuthenticated} = useContext(Context);
 
   const handleScroll = (e) => {
-    //console.log(window.pageYOffset)
     const header = document.querySelector('.header-area');
     if (window.pageYOffset > 0) {
       header.style.backgroundColor = "#F1F1F1";

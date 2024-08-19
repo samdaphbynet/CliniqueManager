@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../../main";
 
 const Login = () => {
-  const { isAuthenticated, setIsAuthenticated } = useContext(Context);
+  const navigate = useNavigate();
+  const { isAuthenticated, setIsAuthenticated, baseUrl } = useContext(Context);
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
@@ -13,13 +14,9 @@ const Login = () => {
     role: "",
   });
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post(
-        "https://clinique-manager-api.vercel.app/api/v1/user/login",
+    await axios.post(`${baseUrl}/api/v1/user/login`,
         {
           email: formLogin.email,
           password: formLogin.password,
@@ -30,7 +27,7 @@ const Login = () => {
           withCredentials: true,
           headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Accept": "application/json",
           },
         }
       )
@@ -41,6 +38,7 @@ const Login = () => {
       })
       .catch((err) => {
         toast.error(err.response.data.message);
+        console.log("Error in login page:", err)
       });
   };
 
@@ -94,7 +92,7 @@ const Login = () => {
               }}
               className="form-control"
             >
-              <option value="Your Role">Select Your Role</option>
+              <option value="Your Role">Sélectionnez votre role</option>
               <option value="Doctor">Doctor</option>
               <option value="Patient">Patient</option>
               <option value="Admin">Admin</option>
@@ -102,7 +100,7 @@ const Login = () => {
 
             <div className="remember">
               <input className="check_remember" type="checkbox" />
-              <label htmlFor="remember">Remember me on this computer</label>
+              <label htmlFor="remember">Souviens-toi de moi sur cet ordinateur?</label>
             </div>
 
             <div className="action_btns">
@@ -111,7 +109,7 @@ const Login = () => {
                   type="submit"
                   className="btn btn-primary px-4 py-2 m-2 text-center"
                 >
-                  Login
+                  Se connecter
                 </button>
               </div>
             </div>
@@ -119,7 +117,7 @@ const Login = () => {
 
           <div className="footer_register">
             <a href="#" className="forgot_password">
-              Forgot password?
+            Mot de passe oublié ?
             </a>
             <a href="register" className="forgot_password">
               Vous avez pas de compte?

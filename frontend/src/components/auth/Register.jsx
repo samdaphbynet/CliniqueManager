@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const Register = () => {
 
-  const {isAuthenticated, setIsAuthenticated} = useContext(Context)
+  const {isAuthenticated, setIsAuthenticated, baseUrl} = useContext(Context)
   const [formRegister, setFormRegister] = useState({
     firstName: "",
     lastName: "",
@@ -21,7 +21,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://clinique-manager-api.vercel.app/api/v1/user/register", 
+      const res = await axios.post(`${baseUrl}/api/v1/user/register`, 
         {
           firstName: formRegister.firstName, 
           lastName: formRegister.lastName,
@@ -51,7 +51,7 @@ const Register = () => {
       <div className="login">
         <div className="user_login">
           <form onSubmit={handleSubmit}>
-            <label>firstName</label>
+            <label>prénom</label>
             <input
               onChange={(e) => {
                 setFormRegister({...formRegister, firstName: e.target.value });
@@ -61,7 +61,7 @@ const Register = () => {
               className="input" />
             <br />
 
-            <label>lastName</label>
+            <label>nom de famille</label>
             <input
               onChange={(e) => {
                 setFormRegister({...formRegister, lastName: e.target.value });
@@ -81,7 +81,7 @@ const Register = () => {
               className="input" />
             <br />
 
-            <label>Password</label>
+            <label>Mot de passe</label>
             <input
               onChange={(e) => {
                 setFormRegister({...formRegister, password: e.target.value });
@@ -91,7 +91,7 @@ const Register = () => {
               className="input" />
             <br />
 
-            <label>Phone</label>
+            <label>Téléphone</label>
             <input
               onChange={(e) => {
                 setFormRegister({...formRegister, phone: e.target.value });
@@ -101,7 +101,7 @@ const Register = () => {
               className="input" />
             <br />
 
-            <label>Birth</label>
+            <label>Date de Naissance</label>
             <input 
              onChange={(e) => {
                 setFormRegister({...formRegister, birth: e.target.value });
@@ -111,16 +111,17 @@ const Register = () => {
               className="input" />
             <br />
 
-            <label>Gender</label>
+            <label>Genre</label>
             <select 
               value={formRegister.gender}
               onChange={(e) => {
                 setFormRegister({...formRegister, gender: e.target.value });
               }}
               className="form-control input">
-              <option value="select">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="select">
+              Sélectionnez le sexe</option>
+              <option value="male">Homme</option>
+              <option value="female">Femme</option>
             </select>
 
             <div className="action_btns">

@@ -1,10 +1,12 @@
-import React, { useState} from "react";
+import React, { useState, useContext} from "react";
 import {useNavigate} from "react-router-dom"
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Context } from '../../main';
 
 const MessageForm = () => {
   const navigate = useNavigate()
+  const { baseUrl } = useContext(Context)
   const [message, setMessage] = useState({
     firstName: "",
     lastName: "",
@@ -17,7 +19,7 @@ const MessageForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    await axios.post("https://clinique-manager-api.vercel.app/api/v1/message/patient", 
+    await axios.post(`${baseUrl}/api/v1/message/patient`, 
         {
             firstName: message.firstName, 
             lastName: message.lastName,

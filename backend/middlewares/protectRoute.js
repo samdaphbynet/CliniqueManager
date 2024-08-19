@@ -42,7 +42,6 @@ export const protectAdmin = async (req, res, next) => {
 export const protectPatient = async (req, res, next) => {
   try {
     const token = req.cookies.PatientToken;
-    console.log("token: ", token);
     // check if the token is existed
     if (!token) {
       return res
@@ -55,7 +54,6 @@ export const protectPatient = async (req, res, next) => {
 
     // decoded token
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    console.log("decoded: ", decoded)
     if (!decoded) {
       return res
         .status(401)
@@ -64,7 +62,6 @@ export const protectPatient = async (req, res, next) => {
 
     // find user by id
     const user = await User.findById(decoded.id).select("-password");
-    console.log("user: ", user)
     if (!user) {
       return res
         .status(404)
