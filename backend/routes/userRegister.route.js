@@ -22,7 +22,7 @@ router.post('/register', patientRegister)
 router.post('/login', login)
 router.post("/add", protectAdmin, addNewAdmin)
 router.get("/getadmin", protectAdmin, getAdmin)
-router.get("/getpatient", protectPatient, getPatient)
+router.get("/getpatient", getPatient)
 router.get("/allpatient", getAllPatients)
 router.get("/doctor", getAllDoctors)
 
