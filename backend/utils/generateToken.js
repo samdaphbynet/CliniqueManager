@@ -11,8 +11,8 @@ export const generateTokenAndSetCookie = (user, res) => {
     res.cookie(tokenName, token, {
       httpOnly: true,
       maxAge: 15 * 24 * 60 * 60 * 1000,
-      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
-      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV !== 'production' ? 'None' : 'Lax',
+      secure: process.env.NODE_ENV !== 'production',
     });
     return token;
   } catch (error) {
