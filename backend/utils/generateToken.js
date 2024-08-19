@@ -12,7 +12,6 @@ export const generateTokenAndSetCookie = (user, res) => {
       httpOnly: true,
       maxAge: 15 * 24 * 60 * 60 * 1000,
       secure: process.env.NODE_ENV === "production",
-      domain: process.env.NODE_ENV === "production" ? "clinique-manager-api.vercel.app" : "localhost"
     });
     return token;
   } catch (error) {
