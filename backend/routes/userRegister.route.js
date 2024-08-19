@@ -27,7 +27,7 @@ router.get("/allpatient", getAllPatients)
 router.get("/doctor", getAllDoctors)
 
 router.post("/logoutadmin", protectAdmin, logoutAdmin)
-router.post("/logoutpatient", protectPatient, logoutPatient)
+router.post("/logoutpatient", logoutPatient)
 
 router.post("/addnewdoctor", protectAdmin, addNewDoctor)
 router.post("/updatedoctor/:id", updateDoctor)
