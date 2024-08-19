@@ -59,23 +59,32 @@ export const login = async (req, res) => {
 
         const user = await User.findOne({email}).select("+password")
         if (!user) {
-            return res.status(404).json({message: "user not found",})
+            return res.status(401).json({message: "Invalid Email ou Password",})
         }
 
         const isPasswordMatched = await user.comparePassword(password)
         if (!isPasswordMatched) {
-            return res.status(401).json({message: "incorrect password or email",})
+            return res.status(401).json({message: "Invalid password or email",})
         }
 
         if (role !== user.role) {
-          return res.status(401).json({message: "User with this role not found!",})
+          return res.status(403).json({message: "User with this role not found!",})
         }
 
         const token = generateTokenAndSetCookie(user, res)
         res.status(200).json({
             success: true,
             message: "user logged with successfully",
-            user,
+            user: {
+              _id: user._id,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              email: user.email,
+              phone: user.phone,
+              birth: user.birth,
+              gender: user.gender,
+              role: user.role,
+            },
             token
         })
     } catch (error) {
