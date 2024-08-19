@@ -44,35 +44,37 @@ export const protectPatient = async (req, res, next) => {
     const token = req.cookies.PatientToken;
     // check if the token is existed
     if (!token) {
-      return res
-        .status(401)
-        .json({
+      return res.status(401).json({
           success: false,
           message: "No token Patient, authorization denied",
         });
     }
 
     // decoded token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    if (!decoded) {
-      return res
-        .status(401)
-        .json({ success: false, message: "Token is not valid" });
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    } catch (error) {
+      return res.status(401).json({
+        success: false,
+        message: "Token is not valid" 
+      });
     }
 
     // find user by id
     const user = await User.findById(decoded.id).select("-password");
     if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+      return res.status(404).json({
+          success: false,
+          message: "User not found"
+        });
     }
 
     // attach user to req object
     req.user = user;
     next();
   } catch (error) {
-    console.log("Error in protectPatient: ", error);
+    console.error("Error in protectPatient: ", error);
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
