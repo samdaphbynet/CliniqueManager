@@ -12,6 +12,7 @@ import registerRoutes from './routes/userRegister.route.js'
 import apointmentRoutes from './routes/appointment.route.js'
 import transactionRoutes from './routes/transaction.route.js'
 import faqRoutes from './routes/faq.route.js'
+import documentRoutes from './routes/document.route.js'
 
 // config variable environment
 dotenv.config({
@@ -38,10 +39,10 @@ app.use(cors({
 }));
 
 // configure fileupload middleware
-app.use(fileUpload({
-    useTempFiles: true,
-    tempFileDir: "/tmp/"
-}))
+// app.use(fileUpload({
+//     useTempFiles: true,
+//     tempFileDir: "/tmp/"
+// }))
 
 app.get("/", (req, res) => {
     res.json("server runing...")
@@ -53,6 +54,9 @@ app.use("/api/v1/user", registerRoutes);
 app.use("/api/v1/appointment", apointmentRoutes);
 app.use("/api/v1/transaction", transactionRoutes);
 app.use("/api/v1/question", faqRoutes);
+app.use('/api/v1/document', documentRoutes);
+
+
 
 connectionDB();
 
