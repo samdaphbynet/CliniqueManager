@@ -1,17 +1,17 @@
 import express from 'express';
 import multer from "multer";
-import path from "path";
+import {CloudinaryStorage} from "multer-storage-cloudinary";
 import { documentPdf } from '../controller/documentController.js';
+import cloudinary from 'cloudinary';
 
 const router = express.Router()
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./files");
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + path.extname(file.originalname);
-        cb(null, uniqueSuffix);
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary.v2,
+    params: {
+        folder: "documents",
+        resouce_type: "raw",
+        allowed_formats: ["pdf"],
     }
 });
 
