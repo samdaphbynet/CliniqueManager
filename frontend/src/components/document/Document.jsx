@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { Context } from '../../main';
 
 const Document = () => {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
+  const {baseUrl} = useContext(Context)
 
   const handleDocument = async (e) => {
     e.preventDefault();
@@ -13,7 +15,7 @@ const Document = () => {
     formData.append("file", file);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/v1/document/pdf", formData, {
+      const res = await axios.post(`${baseUrl}/api/v1/document/pdf`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
