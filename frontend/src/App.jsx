@@ -10,6 +10,7 @@ import Footer from "./components/footer/Footer";
 import { Context } from "./main";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Document from "./components/document/Document";
 
 axios.defaults.withCredentials = true;
 
@@ -39,6 +40,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/appointment" element={<Appointment />} />
+        <Route path="/document" element={<Document />} />
       </Routes>
       <Footer />
       <ToastContainer position="top-center" />
