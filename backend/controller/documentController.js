@@ -5,10 +5,10 @@ import jwt from 'jsonwebtoken';
 export const documentPdf = async (req, res) => {
     try {
         const {title} = req.body;
-        if (!req.file) {
+        if (!req.file.path) {
             return res.status(400).json({ message: "File is required" });
         }
-        const file = req.file.filename;
+        const file = req.file.path;
         const token = req.cookies.PatientToken;
         // check if the token is valid
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
@@ -23,10 +23,16 @@ export const documentPdf = async (req, res) => {
         })
         await documentPdf.save();
 
-        return res.status(200).json({message: "Document uploaded successfully"})
+        return res.status(200).json({
+            success: true,
+            message: "Document uploaded successfully"
+        })
     } catch (error) {
         console.log("Error in documentPdf: ", error)
-        return res.status(500).json({message: "Server error"})
+        return res.status(500).json({
+            success: false,
+            message: "Server error"
+        })
     }
 }
 
