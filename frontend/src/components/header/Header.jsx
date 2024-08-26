@@ -1,28 +1,49 @@
-import React, {useContext} from "react";
-import ButtonLogin from './ButtonLogin';
+import React, { useContext, useEffect, useState } from "react";
+import ButtonLogin from "./ButtonLogin";
 import { Context } from "../../main";
 
-// add class to preloader
-setTimeout(() => {
-  document.querySelector('.js-preloader').classList.add('loaded');
-}, 1000)
+
 
 const Header = () => {
-  const {isAuthenticated} = useContext(Context);
+  const { isAuthenticated } = useContext(Context);
+  const [menu, setMenu] = useState("")
 
-  const handleScroll = (e) => {
-    const header = document.querySelector('.header-area');
-    if (window.pageYOffset > 0) {
-      header.style.backgroundColor = "#F1F1F1";
-    } else {
-      header.style.backgroundColor = "transparent"
+  // add class to preloader
+  useEffect(() => {
+    setTimeout(() => {
+      document.querySelector(".js-preloader").classList.add("loaded");
+    }, 1000);
+  }, [])
+
+  // change background header on scroll
+  useEffect(() => {
+    const handleScroll = (e) => {
+      const header = document.querySelector(".header-area");
+      if (window.pageYOffset > 0) {
+        header.style.backgroundColor = "#F1F1F1";
+      } else {
+        header.style.backgroundColor = "transparent";
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     }
-  }
+  }, [])
 
-  window.addEventListener("scroll", handleScroll)
+  const toggleMenu = () => {
+    const nav = document.querySelector(".main-nav ul");
+    if (nav.classList.contains("navMenu")) {
+      setMenu("")
+    } else {
+      setMenu("navMenu")
+    }
+
+  };
 
   return (
     <>
+      {/* Preloader */}
       <div id="js-preloader" className="js-preloader">
         <div className="preloader-inner">
           <span className="dot"></span>
@@ -33,15 +54,20 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <header className="header-area header-sticky wow">
-        <div className="container">
+      {/* Header Area */}
+      <header
+        className="header-area header-sticky wow slideInDown"
+        data-wow-duration="0.75s"
+        data-wow-delay="0s"
+      >
+        <div className="container-lg">
           <div className="row">
             <div className="col-12">
               <nav className="main-nav">
                 <a href="/" className="logo">
-                  <img src="logo1.png" alt="Chain App Dev" />
+                  <img src="logo1.png" alt="Logo clinique" />
                 </a>
-                <ul className="nav">
+                <ul className={`nav ${menu}`}>
                   <li className="scroll-to-section">
                     <a href="/" className="active">
                       Home
@@ -54,8 +80,13 @@ const Header = () => {
                     <a href="#about">About</a>
                   </li>
                   <li className="scroll-to-section">
-                    <a href="#message">Message</a>
+                    <a href="#message">Envoyer un message</a>
                   </li>
+                  
+                  <li className="scroll-to-section">
+                    <a href={isAuthenticated ? "/document" : "/login"}>Document</a>
+                  </li>
+
                   <li className="scroll-to-section">
                     <a href={isAuthenticated ? "/appointment" : "/login"}>Rendez-vous</a>
                   </li>
@@ -63,7 +94,7 @@ const Header = () => {
                     <ButtonLogin />
                   </li>
                 </ul>
-                <a className="menu-trigger">
+                <a className="menu-trigger" onClick={toggleMenu}>
                   <span>Menu</span>
                 </a>
               </nav>
