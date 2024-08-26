@@ -21,7 +21,7 @@ dotenv.config({
 
 const app = express();
 app.use(express.json());
-app.use("/public", express.static("public"))
+app.use("/files", express.static("files"))
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
