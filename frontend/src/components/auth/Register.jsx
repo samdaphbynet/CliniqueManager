@@ -48,7 +48,12 @@ const Register = () => {
   }
   return (
     <div className="login-register">
+      <div className="row logRegi">
+      <div className="col-lg-6">
+            <img src="patient2.png" width={700} height={700} alt="image login" />
+      </div>
       <div className="login">
+        <h1>Créer votre compte</h1>
         <div className="user_login">
           <form onSubmit={handleSubmit}>
             <label>prénom</label>
@@ -142,6 +147,7 @@ const Register = () => {
             </a>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
