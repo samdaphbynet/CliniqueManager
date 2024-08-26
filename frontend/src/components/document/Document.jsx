@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Context } from '../../main';
+import { toast } from "react-toastify";
 
 const Document = () => {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const {baseUrl} = useContext(Context)
+
+  const navigate = useNavigate();
 
   const handleDocument = async (e) => {
     e.preventDefault();
@@ -20,7 +24,10 @@ const Document = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res)
+      if (res.data.success) {
+        toast("Document envoyé")
+        navigate("/")
+      }
     } catch (error) {
       console.log("Error lors de l'envoi du document", error)
     }
