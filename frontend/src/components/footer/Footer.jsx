@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <div className="container">
         <div className="row">
-          <div className="col-lg-5">
+          <div className="col-lg-6">
             <div className="footer-widget">
               <h4>Contactez le center clinique</h4>
               <p>53 Rue toulouse lautrec 31874, <br></br>Toulouse France</p>
