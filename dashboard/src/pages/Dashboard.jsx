@@ -22,7 +22,7 @@ const Dashboard = () => {
 
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD" subtitle={`Bienvenu ${user.firstName} - ${user.lastName} dans votre dashboard`} />
+        <Header title="DASHBOARD" subtitle={`Bienvenu ${user?.firstName} - ${user?.lastName} dans votre dashboard`} />
         {/* download button */}
         <Box>
           <ReactToPrint
