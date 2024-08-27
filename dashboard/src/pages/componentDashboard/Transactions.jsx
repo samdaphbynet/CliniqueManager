@@ -25,7 +25,7 @@ const Transactions = () => {
       }
     };
     fetchTransactions();
-  }, [transactions]);
+  }, []);
 
   return (
     <Box
