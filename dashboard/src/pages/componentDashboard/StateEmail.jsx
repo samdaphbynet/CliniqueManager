@@ -1,18 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import StatBox from '../../components/StatBox';
 import EmailIcon from '@mui/icons-material/Email';
 import { Box } from '@mui/material'
+import { Context } from "../../index";
 
 const StateEmail = () => {
 
     const [message, setMessage] = useState([])
+    const {baseUrl} = useContext(Context)
 
     // Get all messages
     useEffect(() => {
       const getAllMessages = async () => {
           try {
-              const response = await axios.get("http://localhost:5000/api/v1/message/patient/all")
+              const response = await axios.get(`${baseUrl}/api/v1/message/patient/all`)
               setMessage(response.data.allMessage)
           } catch (error) {
               console.error(error)

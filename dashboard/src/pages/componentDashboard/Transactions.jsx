@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box, Button, Paper, Typography } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import axios from "axios";
 import ModalTransaction from "./ModalTransaction";
+import { Context } from "../../index";
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
+  const {baseUrl} = useContext(Context)
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -15,7 +17,7 @@ const Transactions = () => {
     const fetchTransactions = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/transaction/getall"
+          `${baseUrl}/api/v1/transaction/getall`
         );
         setTransactions(response.data.data);
       } catch (error) {

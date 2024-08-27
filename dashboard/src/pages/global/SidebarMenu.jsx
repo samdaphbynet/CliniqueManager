@@ -19,14 +19,14 @@ const SidebarMenu = () => {
   const urlPathName = location.pathname;
   const [selected, setSelected] = useState(urlPathName);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const { user, setIsAuthenticated } = useContext(Context);
+  const { user, setIsAuthenticated, baseUrl } = useContext(Context);
 
   const navigate = useNavigate();
 
   // handle logout 
   const handleLogout = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/v1/user/logoutadmin", {withCredentials: true})
+      const res = await axios.get(`${baseUrl}/api/v1/user/logoutadmin`, {withCredentials: true})
       toast.success(res.data.message);
       setIsAuthenticated(false);
       navigate("/login");

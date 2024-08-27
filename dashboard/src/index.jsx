@@ -8,9 +8,12 @@ export const Context = createContext({isAuthenticated: false})
 const AppWrapper = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(false)
+  const baseUrl = process.env.REACT_APP_BACKEND_API_VERCEL
+
+  console.log(baseUrl)
 
   return (
-    <Context.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser}}>
+    <Context.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, baseUrl}}>
       <App />
     </Context.Provider>
   )

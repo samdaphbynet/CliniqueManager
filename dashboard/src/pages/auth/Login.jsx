@@ -20,7 +20,7 @@ import { toast } from "react-toastify";
 import {Context} from "../../index";
 
 const Login = () => {
-  const {setIsAuthenticated } = useContext(Context);
+  const {setIsAuthenticated, baseUrl} = useContext(Context);
   const [ admin, setAdmin ] = useState({
     email: "",
     password: "",
@@ -32,7 +32,7 @@ const Login = () => {
   const handleLoginPage = async(e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/v1/user/login", {
+      const response = await axios.post(`${baseUrl}/api/v1/user/login`, {
         email: admin.email,
         password: admin.password,
         confirmPassword: admin.confirmPassword,

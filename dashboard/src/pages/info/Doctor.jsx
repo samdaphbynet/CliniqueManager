@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -7,6 +7,7 @@ import { Avatar, Box, IconButton } from "@mui/material";
 import { Header } from "../../components";
 import AddDoctor from "../../components/AddDoctor";
 import ModalEditDoctor from "../info/ModalEditDoctor";
+import { Context } from "../../index";
 // for modal
 // import Modal from "@mui/material/Modal";
 // import {
@@ -28,13 +29,12 @@ const Doctor = () => {
   const [idDoctor, setIdDoctor] = useState();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const {baseUrl} = useContext(Context)
 
   // fetch data from api
   useEffect(() => {
     const fetchDoctors = async () => {
-      const response = await axios.get(
-        "http://localhost:5000/api/v1/user/doctor"
-      );
+      const response = await axios.get(`${baseUrl}/api/v1/user/doctor`);
       setDoctors(response.data.doctors);
     };
     fetchDoctors();
@@ -43,8 +43,7 @@ const Doctor = () => {
   // handle delete doctor
   const handleDelete = async (id) => {
     try {
-      await axios
-        .delete(`http://localhost:5000/api/v1/user/deletedoctor/${id}`)
+      await axios.delete(`${baseUrl}/api/v1/user/deletedoctor/${id}`)
         .then((res) => {
           setDoctors((prevDoctors) =>
             prevDoctors.filter((doc) => doc._id !== id)

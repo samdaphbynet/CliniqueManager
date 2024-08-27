@@ -1,18 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Box } from "@mui/material";
 import React from "react";
 import StatBox from "../../components/StatBox";
 import PersonIcon from "@mui/icons-material/Person";
+import { Context } from '../../index';
 
 const StateDoctor = () => {
   const [appointment, setAppointment] = useState([]);
+  const {baseUrl} = useContext(Context)
 
   useEffect(() => {
     const fetchAppointment = async () => {
       try {
         const appointment = await axios.get(
-          "http://localhost:5000/api/v1/appointment/all"
+          `${baseUrl}/api/v1/appointment/all`
         );
         setAppointment(appointment.data.appointment);
       } catch (error) {

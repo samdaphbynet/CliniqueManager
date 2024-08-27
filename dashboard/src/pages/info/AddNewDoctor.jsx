@@ -21,7 +21,7 @@ const AddNewDoctor = () => {
   });
   
   const [docAvatarPrev, setDocAvatarPrev] = useState("");
-  const { isAuthenticated } = useContext(Context);
+  const { isAuthenticated, baseUrl } = useContext(Context);
   const navigate = useNavigate();
 
   // handle avatar doctor
@@ -46,9 +46,7 @@ const AddNewDoctor = () => {
 
     // Send the form data to the server...
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/user/addnewdoctor",
-        formData,
+      const response = await axios.post(`${baseUrl}/api/v1/user/addnewdoctor`,formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
           withCredentials: true,

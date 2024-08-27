@@ -1,10 +1,13 @@
+import React, { useState, useContext } from 'react'
 import { Box, Modal, Typography, TextField, Button } from '@mui/material'
-import React, { useState } from 'react'
 import { inputFormTransaction } from '../../constants/inputFormFields'
 import axios from 'axios'
 import { toast } from'react-toastify'
+import { Context } from '../../index'
 
 const ModalTransaction = ({open, handleClose}) => {
+
+    const {baseUrl} = useContext(Context)
 
     const [transaction, setTransaction] = useState({
         user: "",
@@ -26,7 +29,7 @@ const ModalTransaction = ({open, handleClose}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post("http://localhost:5000/api/v1/transaction/transaction", 
+            const response = await axios.post(`${baseUrl}/api/v1/transactio/transaction`, 
                 {
                     user: transaction.user,
                     date: transaction.date,

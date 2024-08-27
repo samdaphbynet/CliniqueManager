@@ -11,7 +11,7 @@ const Appointment = () => {
   const [selectedRowId, setSelectedRowId] = useState(null)
   const [appointment, setAppointmnt] = useState([]);
 
-  const { isAuthenticated } = useContext(Context);
+  const { isAuthenticated, baseUrl } = useContext(Context);
 
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const Appointment = () => {
   useEffect(() => {
     const fetchAppointment = async () => {
       try {
-        await axios.get("http://localhost:5000/api/v1/appointment/all")
+        await axios.get(`${baseUrl}/api/v1/appointment/all`)
           .then((res) => {
             setAppointmnt(res.data.appointment);
           });
@@ -47,7 +47,7 @@ const Appointment = () => {
   const handleStatusChange = async (newStatus) => {
 
     // Update the status in the backend
-    await axios.put(`http://localhost:5000/api/v1/appointment/update/${selectedRowId}`, {
+    await axios.put(`${baseUrl}/api/v1/appointment/update/${selectedRowId}`, {
         status: newStatus,
       })
      .then((res) => {

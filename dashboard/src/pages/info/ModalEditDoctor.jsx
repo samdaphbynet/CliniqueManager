@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Modal from "@mui/material/Modal";
 import {
@@ -14,9 +14,11 @@ import {
 import { inputFormUpdateDoctor } from "../../constants/inputFormFields";
 import { department } from "../../constants/mockData";
 import { toast } from "react-toastify";
+import { Context } from "../../index";
 
 const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
 
+    const {baseUrl} = useContext(Context)
     const [doctorInfo, setDoctorInfo] = useState({})
     const [data, setData] = useState({
         firstName: "",
@@ -33,7 +35,7 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
         const fetchDoctor = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:5000/api/v1/user/getdoctor/${idDoctor}`
+                    `${baseUrl}/api/v1/user/getdoctor/${idDoctor}`
                 );
                 setDoctorInfo(response.data.doctor);
             } catch (error) {
@@ -45,7 +47,7 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
 
     const handleFormSubmit = async () => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/v1/user/updatedoctor/${idDoctor}`, )
+            const response = await axios.post(`${baseUrl}/api/v1/user/updatedoctor/${idDoctor}`, )
         } catch (error) {
             
         }

@@ -23,15 +23,14 @@ import Login from "./pages/auth/Login";
 
 const App = () => {
   const [theme, colorMode] = useMode();
-  const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
+  const { isAuthenticated, setIsAuthenticated, setUser, baseUrl } = useContext(Context);
   const [loading, setLoading] = useState(true)
 
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const userAdmin = await axios.get(
-          "http://localhost:5000/api/v1/user/getadmin",
+        const userAdmin = await axios.get(`${baseUrl}/api/v1/user/getadmin`,
           { withCredentials: true, }
         );
         setIsAuthenticated(true);
