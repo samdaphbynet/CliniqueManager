@@ -29,8 +29,6 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
         role: "",
     })
 
-    console.log(data)
-
     useEffect(() => {
         const fetchDoctor = async () => {
             try {
