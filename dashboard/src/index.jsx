@@ -10,8 +10,6 @@ const AppWrapper = () => {
   const [user, setUser] = useState(false)
   const baseUrl = process.env.REACT_APP_BACKEND_API_VERCEL
 
-  console.log(baseUrl)
-
   return (
     <Context.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, baseUrl}}>
       <App />
