@@ -26,6 +26,8 @@ const App = () => {
   const { isAuthenticated, setIsAuthenticated, setUser, baseUrl } = useContext(Context);
   const [loading, setLoading] = useState(true)
 
+  axios.defaults.withCredentials = true;
+
 
   useEffect(() => {
     const fetchUser = async () => {
