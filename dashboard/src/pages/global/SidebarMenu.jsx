@@ -26,7 +26,7 @@ const SidebarMenu = () => {
   // handle logout 
   const handleLogout = async () => {
     try {
-      const res = await axios.get(`${baseUrl}/api/v1/user/logoutadmin`, {withCredentials: true})
+      const res = await axios.post(`${baseUrl}/api/v1/user/logoutadmin`, {withCredentials: true})
       toast.success(res.data.message);
       setIsAuthenticated(false);
       navigate("/login");
