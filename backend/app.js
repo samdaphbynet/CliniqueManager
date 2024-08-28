@@ -33,16 +33,16 @@ cloudinary.v2.config({
 
 // configure cors middleware
 app.use(cors({
-    origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL, "http://localhost:5173"],
+    origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL, "http://localhost:5173", "http://localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
 
 // configure fileupload middleware
-// app.use(fileUpload({
-//     useTempFiles: true,
-//     tempFileDir: "/tmp/"
-// }))
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/"
+}))
 
 app.get("/", (req, res) => {
     res.json("server runing...")
