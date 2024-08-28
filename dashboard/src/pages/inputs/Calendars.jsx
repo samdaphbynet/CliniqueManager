@@ -1,31 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import FullCalendar, { formatDate } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import { Box, List, ListItem, ListItemText, Typography, } from "@mui/material";
 import { Header } from "../../components";
 import ModalAppointment from '../../components/ModalAppointment';
+import { Context } from '../../index';
+
 
 const Calendars = () => {
   const [currentEvents, setCurrentEvents] = useState([]);
-
+  const {baseUrl} = useContext(Context)
 
   // get all appointments from database
   useEffect(() => {
     const fetchAllAppointment = async () => {
       try {
         const allAppointment = await axios.get(
-          "http://localhost:5000/api/v1/appointment/all",
+          `${baseUrl}/api/v1/appointment/all`,
           { withCredentials: true }
         );
         if (!allAppointment) {
@@ -49,6 +44,8 @@ const Calendars = () => {
   const handleDateClick = (selected) => {
     const title = prompt("Please enter a new title for your event");
     const calendarApi = selected.view.calendar;
+
+    console.log("selected", selected)
 
     calendarApi.unselect();
 
