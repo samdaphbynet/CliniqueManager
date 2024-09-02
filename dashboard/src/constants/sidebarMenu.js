@@ -9,6 +9,7 @@ import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
 
 export const sidebarMenu = [
     {
@@ -26,6 +27,11 @@ export const sidebarMenu = [
         title: 'Ajouter un Médecin',
         icon: ContactsOutlinedIcon,
         path: '/adddoctor',
+    },
+    {
+        title: 'Documents',
+        icon: FileOpenIcon,
+        path: '/documents',
     },
     {
         title: 'Rendez-Vous',
