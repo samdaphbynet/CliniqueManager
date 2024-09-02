@@ -13,3 +13,5 @@ export { default as Line } from './charts/Line';
 export { default as Bar } from './charts/Bar';
 
 export { default as Dashboard } from './Dashboard';
+
+export { default as Document } from './document/Document';
