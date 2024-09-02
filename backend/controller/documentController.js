@@ -1,5 +1,6 @@
 import Document from "../models/documentSchema.js"
 import jwt from 'jsonwebtoken';
+import User from '../models/usersSchema.js';
 
 // Create a new Document object with the specified properties
 export const documentPdf = async (req, res) => {
@@ -36,7 +37,23 @@ export const documentPdf = async (req, res) => {
     }
 }
 
-// Get all documents by user
-export const getAllDocuments = async(req, res) => {
-    
+// Get all documents by user id 
+export const getAllDocuments = async (req, res) => {
+    try {
+        const documents = await Document.find({ user: req.params.id });
+        if (!documents) {
+            return res.status(404).json({ message: "No documents found" });
+        }
+        return res.status(200).json({
+            success: true,
+            message: "Documents fetched successfully",
+            documents: documents
+         });
+    } catch (error) {
+        console.log("Error in getAllDocuments: ", error)
+        return res.status(500).json({
+            success: false,
+            message: "Server error"
+        })
+    }
 }
