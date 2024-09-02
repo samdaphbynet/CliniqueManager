@@ -12,6 +12,7 @@ import {
   Line,
   SidebarMenu,
   Topbar,
+  Document,
 } from "./pages";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material"; // reset all default css
@@ -89,6 +90,7 @@ const App = () => {
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/doctor" element={<Doctor />} />
                     <Route path="/adddoctor" element={<AddNewDoctor />} />
+                    <Route path="/documents" element={<Document />}/>
                     <Route path="/appointment" element={<Appointment />} />
                     <Route path="/calendar" element={<Calendars />} />
                     <Route path="/message" element={<Messages />} />
