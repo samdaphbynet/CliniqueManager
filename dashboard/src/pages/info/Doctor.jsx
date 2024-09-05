@@ -8,20 +8,6 @@ import { Header } from "../../components";
 import AddDoctor from "../../components/AddDoctor";
 import ModalEditDoctor from "../info/ModalEditDoctor";
 import { Context } from "../../index";
-// for modal
-// import Modal from "@mui/material/Modal";
-// import {
-//   Button,
-//   FormControl,
-//   InputLabel,
-//   MenuItem,
-//   Select,
-//   TextField,
-//   Typography,
-// } from "@mui/material";
-// import { inputFormAppointment } from "../../constants/inputFormFields";
-// import { department } from "../../constants/mockData";
-// import { toast } from "react-toastify";
 
 const Doctor = () => {
   const [doctors, setDoctors] = useState([]);
@@ -62,21 +48,21 @@ const Doctor = () => {
     {
       field: "image",
       headerName: "Image",
-      width: 100,
+      width: 80,
       renderCell: (params) => (
         <Avatar src={params.value} alt={params.row.firstName} />
       ),
     },
-    { field: "id", headerName: "ID", width: 220 },
-    { field: "firstName", headerName: "First name", width: 150 },
-    { field: "lastName", headerName: "Last name", width: 150 },
-    { field: "email", headerName: "Email", width: 250 },
-    { field: "age", headerName: "Age", headerAlign: "left", width: 220 },
+    { field: "id", headerName: "ID", width: 250},
+    { field: "firstName", headerName: "First name", width: 100},
+    { field: "lastName", headerName: "Last name", width: 100},
+    { field: "email", headerName: "Email", width: 250},
+    { field: "departement", headerName: "Departement", width: 150},
+    { field: "age", headerName: "Age", headerAlign: "left", width: 150},
     {
       field: "delete",
       headerName: "Delete",
       headerAlign: "center",
-      width: 100,
       renderCell: (params) => (
         <IconButton
           sx={{
@@ -99,7 +85,6 @@ const Doctor = () => {
       field: "edit",
       headerName: "Edit",
       headerAlign: "center",
-      width: 100,
       renderCell: (params) => (
         <IconButton
           sx={{
@@ -129,7 +114,12 @@ const Doctor = () => {
     firstName: doc.firstName,
     lastName: doc.lastName,
     email: doc.email,
-    age: doc.birth,
+    departement: doc.doctorDepartement,
+    age: new Date(doc.birth).toLocaleDateString("fr-FR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }),
   }));
 
   return (
@@ -147,7 +137,6 @@ const Doctor = () => {
       {/* modal */}
       
       {/* fin modal  */}
-
       <Box
         m="15px 0 0 0"
         height="70vh"
