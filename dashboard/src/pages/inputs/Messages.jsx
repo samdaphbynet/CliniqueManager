@@ -1,17 +1,19 @@
 
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import { Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import Header from '../../components/Header';
+import { Context } from '../../index';
 
 const Messages = () => {
     const [message, setMessage] = useState([])
+    const {baseUrl} = useContext(Context)
 
     useEffect(() => {
         const getAllMessages = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/v1/message/patient/all")
+                const response = await axios.get(`${baseUrl}/api/v1/message/patient/all`)
                 setMessage(response.data.allMessage)
             } catch (error) {
                 console.error(error)
@@ -67,7 +69,8 @@ const Messages = () => {
           },
           "& .MuiCheckbox-root": {
             color: `#000000 !important`,
-          },
+          }
+
         }}
       >
             <DataGrid 
