@@ -12,6 +12,9 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Document from "./components/document/Document";
 
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
+
 axios.defaults.withCredentials = true;
 
 function App() {
