@@ -16,12 +16,12 @@ const Appointment = () => {
 
   return (
     <div className="appointement">
-      <h1>Prendre rendez-vous avec xxx</h1>
+      <h1>Prendre rendez-vous avec ClinicPlus</h1>
       <div className="presentation fs-6">
         <h2 className="info">
           <i className="fa fa-info"></i> Presentation
         </h2>
-        xxx a Saint-girons, vous accueille du lundi au vendredi dans son cabinet
+        ClinicPlus a Saint-girons, vous accueille du lundi au vendredi dans son cabinet
         (grands maison blanc)
       </div>
 
