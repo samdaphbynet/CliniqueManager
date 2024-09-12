@@ -1,12 +1,17 @@
+import {useContext} from 'react';
+
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { Box, IconButton } from "@mui/material";
+import { Context } from '../../index';
 
 
 const Topbar = () => {
+
+  const {isCollapsed} = useContext(Context)
 
   return (
     <Box 
@@ -14,11 +19,13 @@ const Topbar = () => {
       justifyContent="space-between" 
       p={2} 
       position="fixed"
-      width="100%" 
-      height={60}
+      right="2.2%"
+      top="15px"
+      borderRadius="10px"
+      width={isCollapsed ? "92%" : "82%"} 
+      height={65}
       zIndex={100}
-      paddingLeft="290px"
-      backgroundColor="#EBEBEB"
+      backgroundColor="#ffffff"
       boxShadow="0 0px 20px 0px #A0A0A0"
     >
 
@@ -26,12 +33,23 @@ const Topbar = () => {
       <Box
         display="flex"
         borderRadius="3px"
-        backgroundColor="#000000"
+        backgroundColor="#F5F1F1FF"
+        border="1px solid black"
       >
-        <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Recherche" />
+        <InputBase 
+          sx={{ 
+            ml: 2,
+            flex: 1,
+            color: "black",
+            fontSize: "14px",
+            fontWeight: "bold",
+            padding: "10px",
+            borderRadius: "5px",
+          }} 
+          placeholder="Recherche..." />
 
         <IconButton type="button" sx={{ p: 1 }}>
-          <SearchIcon />
+          <SearchIcon sx={{color: "black"}}/>
         </IconButton>
       </Box>
 
