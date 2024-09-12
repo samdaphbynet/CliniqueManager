@@ -27,11 +27,12 @@ const StateDoctor = () => {
   return (
     <Box
       gridColumn="span 3"
-      backgroundColor="#EBEBEB"
+      backgroundColor="#FFFFFFFF"
+      borderRadius="8px"
       display="flex"
       alignItems="center"
       justifyContent="center"
-      boxShadow="0 0px 20px 0px #A0A0A0"
+      boxShadow="0 0px 15px 0px #A0A0A0"
     >
       <StatBox
         title={appointment.length}
