@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Modal from "@mui/material/Modal";
 import {
@@ -15,8 +15,11 @@ import {
 import { inputFormAppointment } from "../constants/inputFormFields";
 import { department } from "../constants/mockData";
 import {toast} from 'react-toastify';
+import { Context } from '../index';
 
 const ModalAppointment = () => {
+
+  const {baseUrl} = useContext(Context)
 
   const [appointment, setAppointment] = useState({
     firstName: "",
@@ -43,7 +46,7 @@ const ModalAppointment = () => {
     const fetchDoctor = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/user/doctor"
+          `${baseUrl}/api/v1/user/doctor`
         );
         setDoctor(response.data.doctors);
       } catch (error) {
@@ -57,7 +60,7 @@ const ModalAppointment = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/v1/appointment/appointment", {
+      await axios.post(`${baseUrl}/api/v1/appointment/appointment`, {
         firstName: appointment.firstName,
         lastName: appointment.lastName,
         email: appointment.email,
