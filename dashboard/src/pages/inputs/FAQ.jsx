@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from 'axios';
 import { Header } from "../../components";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -8,22 +8,23 @@ import Typography from "@mui/material/Typography";
 import Accordion from "@mui/material/Accordion";
 import { Box, Button, Input, TextareaAutosize } from "@mui/material";
 import { toast } from 'react-toastify';
+import { Context } from '../../index';
 
 
 const FAQ = () => {
-
   const [questions, setQuestions] = useState([])
   const [isNone, setIsNone] = useState(false)
   const [answers, setAnswers] = useState({
     question: "",
     answer: "",
   })
+  const {baseUrl, isCollapsed} = useContext(Context)
 
   // fetch questions
   useEffect(() => {
     const fetchQuestions = async() => {
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/question/getall")
+        const response = await axios.get(`${baseUrl}/api/v1/question/getall`)
         setQuestions(response.data.questions)
       } catch (error) {
         console.log("Error fetching questions:", error)
@@ -45,7 +46,7 @@ const FAQ = () => {
   const handleQuestions = async (e) => {
     e.preventDefault()
     try {
-      await axios.post("http://localhost:5000/api/v1/question/faq", answers)
+      await axios.post(`${baseUrl}/api/v1/question/faq`, answers)
         toast.success("Question ajoutée avec succès!")
         setAnswers({question: "", answer: ""})
         setIsNone(false)
@@ -56,7 +57,7 @@ const FAQ = () => {
   }
 
   return (
-    <Box m="80px 20px 20px 320px">
+    <Box m={isCollapsed ? "100px 20px 20px 100px" : "100px 20px 20px 320px"}>
       {/* header */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="FAQ" subtitle="Foire Aux Questions" />
