@@ -14,15 +14,15 @@ import {ReactToPrint} from "react-to-print";
 
 
 const Dashboard = () => {
-  const { user } = useContext(Context);
+  const { user, isCollapsed } = useContext(Context);
   const ref = useRef();
 
   return (
-    <Box m="40px" mt="80px" marginLeft="300px">
+    <Box m="40px" mt="6%" marginLeft={isCollapsed ? "100px" : "300px"}>
 
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD" subtitle={`Bienvenu ${user?.firstName} - ${user?.lastName} dans votre dashboard`} />
+        <Header title="DASHBOARD" subtitle={`Bienvenu ${user?.firstName} ${user?.lastName}`} />
         {/* download button */}
         <Box>
           <ReactToPrint
@@ -64,8 +64,9 @@ const Dashboard = () => {
         <Box
           gridColumn="span 8"
           gridRow="span 2"
-          backgroundColor="#EBEBEB"
+          backgroundColor="#FFFFFFFF"
           boxShadow="0 0px 20px 0px #A0A0A0"
+          borderRadius="7px"
         >
           {/* header line chart */}
           <Box
@@ -110,7 +111,8 @@ const Dashboard = () => {
         <Box
           gridColumn="span 8"
           gridRow="span 2"
-          backgroundColor="#EBEBEB"
+          backgroundColor="#FFFFFFFF"
+          borderRadius="7px"
           p="30px"
           boxShadow="0 0px 20px 0px #A0A0A0"
         >
@@ -138,7 +140,8 @@ const Dashboard = () => {
         <Box
           gridColumn="span 8"
           gridRow="span 3"
-          backgroundColor="#EBEBEB"
+          backgroundColor="#FFFFFFFF"
+          borderRadius="7px"
           boxShadow="0 0px 20px 0px #A0A0A0"
         >
           <Typography
@@ -153,7 +156,30 @@ const Dashboard = () => {
             <BarChart isDashboard={true} />
           </Box>
         </Box>
+      </Box>
 
+      {/* footer */}
+      <Box 
+        sx={{
+          height: "80px", 
+          backgroundColor:"#fff", 
+          mt: "40px", 
+          mb:"20px", 
+          color: "black",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          p: "40px",
+          borderRadius: "10px",
+        }}>
+        <Box>
+          <Typography>
+            Copyright © 2024 ClincPlus, All rights reserved.
+          </Typography>
+        </Box>
+        <Box sx={{borderBottom: "2px solid black"}}>
+          <Typography>Privacy Policy | Terms & Conditions</Typography>
+        </Box>
       </Box>
     </Box>
   );
