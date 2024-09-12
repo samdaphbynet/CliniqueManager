@@ -31,8 +31,9 @@ const Transactions = () => {
     <Box
       gridColumn="span 4"
       gridRow="span 7"
-      backgroundColor="#EBEBEB"
+      backgroundColor="#FFFFFFFF"
       overflow="auto"
+      borderRadius="7px"
       boxShadow="0 0px 20px 0px #A0A0A0"
     >
       <Box
