@@ -71,7 +71,7 @@ const AddNewDoctor = () => {
     <Box p="90px 80px 80px 360px">
       <Header
         title="AJOUTER UN MEDECIN"
-        subtitle="Céer un nouveau profile de médecin"
+        subtitle="Créer un nouveau profile de médecin"
       />
 
       <Box 
