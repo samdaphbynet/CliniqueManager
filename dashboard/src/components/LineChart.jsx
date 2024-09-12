@@ -40,7 +40,7 @@ const LineChart = ({isDashboard}) => {
                 },
             }}
             colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }} // added
-            margin={{ top: 50, right: 110, bottom: 50, left: 50 }}
+            margin={{ top: 60, right: 160, bottom: 70, left: 50 }}
             xScale={{ type: "point" }}
             yScale={{
                 type: "linear",
@@ -68,7 +68,7 @@ const LineChart = ({isDashboard}) => {
                 tickSize: 4,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: isDashboard ? undefined : "count", // added
+                legend: isDashboard ? undefined : "Patient", // added
                 legendOffset: -40,
                 legendPosition: "middle",
             }}
