@@ -129,12 +129,13 @@ const ModalAppointment = () => {
               transform: "translate(-50%, -50%)",
               width: "45%",
               height: "auto",
-              backgroundColor: "#D8D8D8",
+              backgroundColor: "#0093E9",
+              backgroundImage: "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
               boxShadow: "0 0px 20px 0px #9C9C9C",
-              p: 4,
+              p: 8,
             }}
           >
-            <Typography id="modal-appointment" variant="h2" color="#000000" mb="20px">
+            <Typography id="modal-appointment" variant="h3" color="#FFFFFFFF" mb="20px">
               Ajouter un rendez-vous
             </Typography>
             <Typography
