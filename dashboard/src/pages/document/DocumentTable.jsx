@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useContext} from "react";
 import Box from "@mui/material/Box";
 import TableRow from "@mui/material/TableRow";
 import Table from "@mui/material/Table";
@@ -8,15 +8,18 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import Paper from "@mui/material/Paper";
 import Row from "./Row";
+import { Context } from '../../index';
 
 const DocumentTable = ({patient}) => {
+
+  const {isCollapsed} = useContext(Context)
 
   return (
     <Box
       sx={{
         borderRadius: "10px",
         marginTop: "20px",
-        marginLeft: "300px",
+        marginLeft: isCollapsed ? "100px" : "300px",
         marginRight: "50px",
         color: "black",
         boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
