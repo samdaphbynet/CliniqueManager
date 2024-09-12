@@ -5,15 +5,17 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import { Box, List, ListItem, ListItemText, Typography, } from "@mui/material";
+import { Box, List, ListItem, ListItemText, Typography, InputBase, IconButton } from "@mui/material";
 import { Header } from "../../components";
 import ModalAppointment from '../../components/ModalAppointment';
 import { Context } from '../../index';
+import SearchIcon from '@mui/icons-material/Search';
 
 
 const Calendars = () => {
   const [currentEvents, setCurrentEvents] = useState([]);
-  const {baseUrl} = useContext(Context)
+  const [filtredEvents, setFiltredEvents] = useState([]);
+  const {baseUrl, isCollapsed} = useContext(Context)
 
   // get all appointments from database
   useEffect(() => {
@@ -34,6 +36,7 @@ const Calendars = () => {
           allDay: true,
         }));
         setCurrentEvents(events);
+        setFiltredEvents(events);
       } catch (error) {
         console.error(error);
       }
@@ -41,11 +44,10 @@ const Calendars = () => {
     fetchAllAppointment();
   }, []);
 
+  // TODO: add event
   const handleDateClick = (selected) => {
     const title = prompt("Please enter a new title for your event");
     const calendarApi = selected.view.calendar;
-
-    console.log("selected", selected)
 
     calendarApi.unselect();
 
@@ -62,6 +64,7 @@ const Calendars = () => {
     }
   };
 
+  // TODO: remove event
   const handleEventClick = (selected) => {
     if (
       window.confirm(
@@ -75,9 +78,17 @@ const Calendars = () => {
     }
   };
 
+  // handle filtred event
+  const handleSearchedEvents = async (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filtred = currentEvents.filter((event) => event.title.toLowerCase().includes(searchTerm))
+      
+    setFiltredEvents(filtred)
+  }
+
 
   return (
-    <Box m="80px 20px 20px 320px">
+    <Box m={isCollapsed ? "80px 20px 20px 100px" : "80px 20px 20px 300px"}>
       <Box m="5px 20px" display="flex" justifyContent="space-between" alignItems="center">
         <Header title="Calendrier" subtitle="Gérer tout les rendez-vous de vous patients" />
         <ModalAppointment />
@@ -87,16 +98,32 @@ const Calendars = () => {
         {/* CALENDAR SIDEBAR */}
         <Box
           p="10px"
-          flex="15%"
+          flex="20%"
           borderRadius="4px"
-          backgroundColor="#747474"
-          height="74vh"
+          backgroundColor="#00A2FFFF"
+          height="75vh"
           overflow="scroll"
         >
           <Typography variant="h5">Liste de rendez-vous</Typography>
+          {/* 🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧 SEARCH BAR 🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧🟧 */}
+          <Box
+            display="flex"
+            borderRadius="3px"
+            backgroundColor="#727272FF"
+            mt="20px"
+          >
+            <InputBase 
+              sx={{ ml: 2, flex: 1 }} 
+              placeholder="Recherche"
+              onChange={handleSearchedEvents}
+            />
 
+            <IconButton type="button" sx={{ p: 1 }}>
+              <SearchIcon />
+            </IconButton>
+          </Box>
           <List>
-            {currentEvents.map((event) => (
+            {filtredEvents?.map((event) => (
               <ListItem
                 key={event.id}
                 sx={{
