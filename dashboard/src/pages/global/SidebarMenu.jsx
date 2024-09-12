@@ -18,8 +18,8 @@ const SidebarMenu = () => {
   const location = useLocation();
   const urlPathName = location.pathname;
   const [selected, setSelected] = useState(urlPathName);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const { user, setIsAuthenticated, baseUrl } = useContext(Context);
+  //const [isCollapsed, setIsCollapsed] = useState(false);
+  const { user, setIsAuthenticated, baseUrl, isCollapsed, setIsCollapsed } = useContext(Context);
 
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const SidebarMenu = () => {
         top: 0,
         left: 0,
         "& .pro-sidebar-inner": {
-          background: `#EBEBEB !important`,
+          background: `#FFFFFFFF !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
