@@ -12,7 +12,9 @@ const Document = () => {
   const [patients, setPatients] = useState([])
   const [filteredPatients, setFilteredPatients] = useState([])
 
-  const {baseUrl} = useContext(Context)
+  const {baseUrl, isCollapsed} = useContext(Context)
+
+  console.log(isCollapsed)
 
   useEffect(() => {
       // function async fetched all patient
@@ -51,7 +53,7 @@ const Document = () => {
           borderRadius: "10px",
           padding: "20px",
           marginTop: "100px",
-          marginLeft: "300px",
+          marginLeft: isCollapsed ? "100px" : "300px",
           marginRight: "50px",
           color: "black",
           boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
