@@ -36,7 +36,7 @@ const BarChart = ({ isDashboard}) => {
                 },
             }}
             keys={["doctor", "appointment", "message", "patient"]}
-            indexBy="country"
+            indexBy="month"
             padding={0.4}
             colors={{ scheme: "dark2" }}
             valueScale={{ type: "linear" }}
@@ -68,7 +68,7 @@ const BarChart = ({ isDashboard}) => {
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: isDashboard ? undefined : "ville", // changed
+                legend: isDashboard ? undefined : "mois", // changed
                 legendPosition: "middle",
                 legendOffset: 32,
             }}
