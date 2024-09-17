@@ -707,19 +707,40 @@ register
 /* form message  */
 
 .message_container {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                  url("/public/bg_message.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.815), rgba(0,0,0,0.4)), url("/public/lastbg.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-
-  width: 100%;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 6% 0 6% 0;
+  padding: 4% 0 4% 0;
+}
+
+.message_container .titleMessage {
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  border-bottom: 3px rgb(0, 183, 255) solid;
+}
+
+.formAndImg {
+  width: 80%;
+  padding: 3% 0 6% 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.backgroundLeft {
+  width: 100%;
+  height: 66vh;
+  background-image: url("/public/pngtest.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-right: 50px;
 }
 
 .message_container .message {
