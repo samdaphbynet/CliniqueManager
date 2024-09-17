@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Box, Menu, MenuItem } from "@mui/material";
+import { Box, Menu, MenuItem, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { Header } from "../../components";
 import { Context } from "../../index";
@@ -11,7 +11,7 @@ const Appointment = () => {
   const [selectedRowId, setSelectedRowId] = useState(null)
   const [appointment, setAppointmnt] = useState([]);
 
-  const { isAuthenticated, baseUrl } = useContext(Context);
+  const { isAuthenticated, baseUrl, isCollapsed } = useContext(Context);
 
   const navigate = useNavigate();
 
@@ -143,7 +143,7 @@ const Appointment = () => {
 
   // row - columns --> data display...
   return (
-    <Box m="20px 20px 20px 320px">
+    <Box m={isCollapsed ? "100px 40px 20px 120px" : "100px 40px 20px 300px"}>
       <Header title="RENDEZ-VOUS" subtitle="Liste de tout les rendez-vous" />
 
       <Box
@@ -191,6 +191,30 @@ const Appointment = () => {
           <MenuItem onClick={() => handleStatusChange("confirmed")}>Confirmed</MenuItem>
           <MenuItem onClick={() => handleStatusChange("canceled")}>Canceled</MenuItem>
         </Menu>
+      </Box>
+
+      {/* footer */}
+      <Box 
+        sx={{
+          height: "80px", 
+          backgroundColor:"#fff", 
+          mt: "40px", 
+          mb:"20px", 
+          color: "black",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          p: "40px",
+          borderRadius: "10px",
+        }}>
+        <Box>
+          <Typography>
+            Copyright © 2024 ClincPlus, All rights reserved.
+          </Typography>
+        </Box>
+        <Box sx={{borderBottom: "2px solid black"}}>
+          <Typography>Privacy Policy | Terms & Conditions</Typography>
+        </Box>
       </Box>
     </Box>
   );
