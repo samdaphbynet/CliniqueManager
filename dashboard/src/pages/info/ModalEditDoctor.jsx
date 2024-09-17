@@ -19,8 +19,7 @@ import { Context } from "../../index";
 const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
 
     const {baseUrl} = useContext(Context)
-    const [doctorInfo, setDoctorInfo] = useState({})
-    const [data, setData] = useState({
+    const [doctorData, setDoctorData] = useState({
         firstName: "",
         lastName: "",
         email: "",
@@ -28,28 +27,71 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
         department: "",
         role: "",
     })
+    const [loading, setLoading] = useState(false);
 
+    // fetch data doctor by id
     useEffect(() => {
         const fetchDoctor = async () => {
             try {
-                const response = await axios.get(
-                    `${baseUrl}/api/v1/user/getdoctor/${idDoctor}`
-                );
-                setDoctorInfo(response.data.doctor);
+                const response = await axios.get(`${baseUrl}/api/v1/user/getdoctor/${idDoctor}`);
+                setDoctorData(response.data.doctor);
             } catch (error) {
-                console.error(error);
+                toast.error("Erreur lors de la récuperation des données du médecin.");
             }
         };
-        fetchDoctor();
-    }, [idDoctor])
+        if (idDoctor) {
+            fetchDoctor();
+        }
+    }, [idDoctor, baseUrl])
 
-    const handleFormSubmit = async () => {
+    // handle input change
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        setDoctorData((prevData) => ({
+            ...prevData, [name]: value,
+        }))
+    }
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
         try {
-            const response = await axios.post(`${baseUrl}/api/v1/user/updatedoctor/${idDoctor}`, )
+            await axios.post(`${baseUrl}/api/v1/user/updatedoctor/${idDoctor}`, doctorData);
+            toast.success("Le profil du médecin a été mis à jour avec succés.")
+            onClose();
         } catch (error) {
-            
+            toast.error("Erreur lors de la mise à jour des informations.")
+        } finally {
+            setLoading(false);
         }
     };
+
+    if (loading) {
+        return (
+            <Box
+                sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: "45%",
+                    height: "auto",
+                    backgroundColor: "#D8D8D8",
+                    boxShadow: "0 0px 20px 0px #9C9C9C",
+                    p: 4,
+                }}
+            >
+                <Typography
+                    id="modal-appointment"
+                    variant="h3"
+                    color="#000000"
+                    mb="20px"
+                >
+                    {`Chargement...`}
+                </Typography>
+            </Box>
+        )
+    }
 
     return (
         <Modal
@@ -78,7 +120,7 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
                 color="#000000"
                 mb="20px"
             >
-                {`modifier les information du Dr.${doctorInfo.firstName} ${doctorInfo.lastName}`}
+                {`modifier les information du Dr.${doctorData.firstName} ${doctorData.lastName}`}
             </Typography>
             <Typography
                 id="modal-modal-description"
@@ -92,28 +134,23 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
                 >
                 {inputFormUpdateDoctor.map(({ label, name, type }) => (
                     <TextField
-                    InputLabelProps={{
-                        style: { color: "#000000" },
-                    }}
-                    InputProps={{
-                        style: { color: "#000000" },
-                    }}
-                    sx={{
-                        gridColumn: "span 2",
-                        border: "1px solid #ccc",
-                        borderRadius: "4px",
-                        marginBottom: "10px",
-                        backgroundColor: "#F0F0F0",
-                    }}
-                    value={doctorInfo[name] || ""}
-                    onChange={(e) => {
-                        setData({...data, [name]: e.target.value });
-                    }}
-                    key={name}
-                    fullWidth
-                    variant="filled"
-                    type={type}
-                    label={label}
+                        key={name}
+                        label={label}
+                        name={name}
+                        sx={{
+                            gridColumn: "span 2",
+                            border: "1px solid #ccc",
+                            borderRadius: "4px",
+                            marginBottom: "10px",
+                            backgroundColor: "#F0F0F0",
+                        }}
+                        InputLabelProps={{ style: { color: "#000000" }}}
+                        InputProps={{ style: { color: "#000000" }}}
+                        value={doctorData[name] || ""}
+                        onChange={handleInputChange}
+                        fullWidth
+                        variant="filled"
+                        type={type}
                     />
                 ))}
 
@@ -133,9 +170,7 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
                         color: "black",
                     }}
                     defaultValue=""
-                    onChange={(e) => {
-                        setData({...data, department: e.target.value });
-                    }}
+                    onChange={handleInputChange}
                     >
                     {department.map((dep) => (
                         <MenuItem value={dep.name} key={dep.name}>
