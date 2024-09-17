@@ -1,16 +1,23 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
-import { IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 
 const AddNewDoctor = ({ title }) => {
     const navigate = useNavigate();
 
+    const url = window.location.href.split("/")[3]
+
+    
+
     // add new doctor
     const handleNewDoctor = async (e) => {
         e.preventDefault();
-        navigate('/adddoctor')
+        if (url === "adddoctor") {
+            navigate(`/doctor`)
+        }else {
+            navigate(`/adddoctor`)
+        }
     };
 
     return (
