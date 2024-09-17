@@ -3,7 +3,7 @@ import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { DataGrid } from "@mui/x-data-grid";
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import { Header } from "../../components";
 import AddDoctor from "../../components/AddDoctor";
 import ModalEditDoctor from "../info/ModalEditDoctor";
@@ -15,7 +15,7 @@ const Doctor = () => {
   const [idDoctor, setIdDoctor] = useState();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const {baseUrl} = useContext(Context)
+  const {baseUrl, isCollapsed} = useContext(Context)
 
   // fetch data from api
   useEffect(() => {
@@ -43,7 +43,7 @@ const Doctor = () => {
       console.error(`Error deleting doctor with id ${id}:`, error);
     }
   };
-
+  // handle column 
   const columns = [
     {
       field: "image",
@@ -108,6 +108,7 @@ const Doctor = () => {
     },
   ];
 
+  // handle rows
   const rows = doctors.map((doc) => ({
     id: doc._id,
     image: doc.docAvatar.url,
@@ -123,7 +124,7 @@ const Doctor = () => {
   }));
 
   return (
-    <Box m="80px 30px" ml="300px">
+    <Box m="100px 30px" ml={isCollapsed ? "110px" : "300px"}>
       <Box
         display="flex"
         justifyContent="space-between"
@@ -176,6 +177,30 @@ const Doctor = () => {
             rows={rows}
             columns={columns}
           />
+        </Box>
+      </Box>
+
+      {/* footer */}
+      <Box 
+        sx={{
+          height: "80px", 
+          backgroundColor:"#fff", 
+          mt: "40px", 
+          mb:"20px", 
+          color: "black",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          p: "40px",
+          borderRadius: "10px",
+        }}>
+        <Box>
+          <Typography>
+            Copyright © 2024 ClincPlus, All rights reserved.
+          </Typography>
+        </Box>
+        <Box sx={{borderBottom: "2px solid black"}}>
+          <Typography>Privacy Policy | Terms & Conditions</Typography>
         </Box>
       </Box>
     </Box>
