@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from 'axios';
 import {toast} from 'react-toastify';
-import { Box, IconButton, InputBase } from "@mui/material";
+import { Box, IconButton, InputBase, Typography } from "@mui/material";
 import Header from "../../components/Header";
 import DocumentTable from "./DocumentTable";
 import SearchIcon from "@mui/icons-material/Search";
@@ -59,6 +59,7 @@ const Document = () => {
           boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
         }}
       >
+        
         <Header
           title="Document"
           subtitle="Les documents reçu de patients"
@@ -77,6 +78,30 @@ const Document = () => {
         </Box>
       </Box>
       <DocumentTable patient={filteredPatients}/>
+
+      {/* footer */}
+      <Box 
+        sx={{
+          height: "80px", 
+          backgroundColor:"#fff", 
+          mt: "40px", 
+          mb:"20px", 
+          color: "black",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          p: "40px",
+          borderRadius: "10px",
+        }}>
+        <Box>
+          <Typography>
+            Copyright © 2024 ClincPlus, All rights reserved.
+          </Typography>
+        </Box>
+        <Box sx={{borderBottom: "2px solid black"}}>
+          <Typography>Privacy Policy | Terms & Conditions</Typography>
+        </Box>
+      </Box>
     </>
   );
 };
