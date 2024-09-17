@@ -1,8 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { inputFormFields } from "../../constants/inputFormFields";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { Header } from "../../components";
+import AddDoctor from "../../components/AddDoctor"
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Context } from "../../index";
@@ -21,7 +22,7 @@ const AddNewDoctor = () => {
   });
   
   const [docAvatarPrev, setDocAvatarPrev] = useState("");
-  const { isAuthenticated, baseUrl } = useContext(Context);
+  const { isAuthenticated, baseUrl, isCollapsed } = useContext(Context);
   const navigate = useNavigate();
 
   // handle avatar doctor
@@ -68,11 +69,19 @@ const AddNewDoctor = () => {
   }, [isAuthenticated, navigate]);
 
   return (
-    <Box p="90px 80px 80px 360px">
-      <Header
-        title="AJOUTER UN MEDECIN"
-        subtitle="Créer un nouveau profile de médecin"
-      />
+    <Box m="100px 30px" ml={isCollapsed ? "110px" : "300px"}>
+      <Box 
+        display="flex" 
+        justifyContent="space-between" 
+        alignItems="center"
+        m="0 20px"
+      >
+        <Header
+          title="AJOUTER UN MEDECIN"
+          subtitle="Créer un nouveau profile de médecin"
+        />
+        <AddDoctor title="Liste des medecin" />
+      </Box>
 
       <Box 
         p="40px" 
@@ -189,6 +198,30 @@ const AddNewDoctor = () => {
             </Button>
           </Box>
         </form>
+      </Box>
+
+      {/* footer */}
+      <Box 
+        sx={{
+          height: "80px", 
+          backgroundColor:"#fff", 
+          mt: "40px", 
+          mb:"20px", 
+          color: "black",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          p: "40px",
+          borderRadius: "10px",
+        }}>
+        <Box>
+          <Typography>
+            Copyright © 2024 ClincPlus, All rights reserved.
+          </Typography>
+        </Box>
+        <Box sx={{borderBottom: "2px solid black"}}>
+          <Typography>Privacy Policy | Terms & Conditions</Typography>
+        </Box>
       </Box>
     </Box>
   );
