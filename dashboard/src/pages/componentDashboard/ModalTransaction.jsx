@@ -29,7 +29,7 @@ const ModalTransaction = ({open, handleClose}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post(`${baseUrl}/api/v1/transactio/transaction`, 
+            const response = await axios.post(`${baseUrl}/api/v1/transaction/transaction`, 
                 {
                     user: transaction.user,
                     date: transaction.date,
