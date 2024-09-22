@@ -75,6 +75,7 @@ global styles
 */
 html,
 body {
+  overflow-x: hidden;
   background: #ffffff;
   font-family: 'Roboto', sans-serif;
 }
@@ -504,8 +505,10 @@ register
 /* form message  */
 
 .message_container {
-  
-  /* background: #afd1cd73; */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.753), rgba(0, 0, 0, 0.39)), url("/public/bg_message.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   height: auto;
   display: flex;
   justify-content: center;
@@ -519,6 +522,12 @@ register
   margin-bottom: 20px;
   color: rgb(255, 255, 255);
   border-bottom: 3px rgb(0, 183, 255) solid;
+}
+
+.message_container h6 {
+  color: rgb(218, 218, 218);
+  line-height: 1.5;
+  letter-spacing: 1px;
 }
 
 .formAndImg {
@@ -613,6 +622,7 @@ preloader
 */
 
 .js-preloader {
+  overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
@@ -1061,76 +1071,15 @@ Footer Style
 */
 
 footer {
-  background-image: url(../../../footer-bg.webp);
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-top: 100px;
-  padding-top: 400px;
+
+  padding-top: 100px;
+
   padding-bottom: 60px;
 }
 
-.footer-widget .logo img {
-  max-width: 96px;
+footer img {
+  max-width: 120px;
   margin-bottom: 30px;
-}
-
-.footer-widget h4 {
-  font-size: 20px;
-  color: #fff;
-  font-weight: 700;
-  margin-bottom: 30px;
-}
-
-.footer-widget p {
-  margin-bottom: 15px;
-}
-
-.footer-widget p,
-.footer-widget p a {
-  color: #fff;
-}
-
-.footer-widget ul {
-  display: inline;
-  max-width: 40%;
-  float: left;
-  margin-right: 10%;
-}
-
-.footer-widget ul li {
-  margin-bottom: 10px;
-}
-
-.footer-widget ul li:last-child {
-  margin-bottom: 0px;
-}
-
-.footer-widget ul li a {
-  font-size: 15px;
-  color: #fff;
-  transition: all .3s;;
-}
-
-.footer-widget a:hover {
-  opacity: 0.75;
-}
-
-footer .copyright-text p {
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 0px;
-  color: #fff;
-}
-
-footer p a {
-  color: #fff;
-  transition: all .5s;
-}
-
-footer p a:hover {
-  opacity: 0.75;
-  color: #fff;
 }
 
 /* 
