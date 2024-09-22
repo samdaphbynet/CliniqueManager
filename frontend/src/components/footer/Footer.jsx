@@ -7,7 +7,9 @@ const Footer = () => {
       <Container>
         <Row>
           <Col md={3}>
-            <img src="public/logo1.png" alt="" />
+          <a href="/" className="logo navbar-brand me-auto">
+              <img src="logo1.png" alt="Logo clinique" />
+            </a>
           </Col>
           <Col md={3}>
             <h5>ClinicPlus</h5>
