@@ -47,7 +47,7 @@ const Header = () => {
         data-wow-duration="0.75s"
         data-wow-delay="0s"
       >
-        <nav className="main-nav navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="main-nav navbar navbar-expand-lg">
           <div className="container-lg d-flex align-items-center">
             <a href="/" className="logo navbar-brand me-auto">
               <img src="logo1.png" alt="Logo clinique" />
