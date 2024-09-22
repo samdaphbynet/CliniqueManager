@@ -1,12 +1,12 @@
-import React, { useState, useContext} from "react";
-import {useNavigate} from "react-router-dom"
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Context } from '../../main';
+import { Context } from "../../main";
 
 const MessageForm = () => {
-  const navigate = useNavigate()
-  const { baseUrl } = useContext(Context)
+  const navigate = useNavigate();
+  const { baseUrl } = useContext(Context);
   const [message, setMessage] = useState({
     firstName: "",
     lastName: "",
@@ -18,43 +18,52 @@ const MessageForm = () => {
   // handle submit message
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    await axios.post(`${baseUrl}/api/v1/message/patient`, 
+
+    await axios
+      .post(
+        `${baseUrl}/api/v1/message/patient`,
         {
-            firstName: message.firstName, 
-            lastName: message.lastName,
-            email: message.email,
-            phone: message.phone,
-            message: message.message},
+          firstName: message.firstName,
+          lastName: message.lastName,
+          email: message.email,
+          phone: message.phone,
+          message: message.message,
+        },
         {
-            withCredentials: true,
-            headers: {
-                "Content-Type": "application/json"
-            }
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-    ).then(res => {
-        toast.success(res.data.message)
+      )
+      .then((res) => {
+        toast.success(res.data.message);
         setMessage({
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            message: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
         });
-        navigate("/")
-    }).catch(err => {
+        navigate("/");
+      })
+      .catch((err) => {
         console.log(err);
-        toast.error(err.response.data.message)
-  
-    });
+        toast.error(err.response.data.message);
+      });
   };
 
   return (
     <div id="message" className="message_container">
       <h1 className="titleMessage">Envoyer un message</h1>
+      <h6 className="w-50 text-center">
+        Vous avez une question ou besoin d'informations supplémentaires ?
+        Envoyez-nous un message et nous vous répondrons dans les plus brefs
+        délais. Notre équipe est à votre disposition pour vous aider.
+      </h6>
+
       <div className="formAndImg">
-        <div className="backgroundLeft">
-        </div>
+        <div className="backgroundLeft"></div>
         <div className="message">
           <div className="user_login">
             <form className="form_message" onSubmit={handleSubmit}>
@@ -106,7 +115,7 @@ const MessageForm = () => {
                 value={message.message}
                 placeholder="Votre message"
                 onChange={(e) => {
-                  setMessage({...message, message: e.target.value });
+                  setMessage({ ...message, message: e.target.value });
                 }}
                 className="form-control"
                 rows={7}
