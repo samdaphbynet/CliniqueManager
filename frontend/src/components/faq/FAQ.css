@@ -1,0 +1,56 @@
+/* Style général du conteneur FAQ */
+.faq-container {
+    background-color: #f7f9fb; /* Fond léger et apaisant */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Légère ombre pour la profondeur */
+  }
+  
+  /* Style du titre FAQ */
+  .faq-title {
+    color: #0c5476; /* Bleu apaisant et professionnel */
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  /* Style pour chaque item de la FAQ */
+  .faq-item {
+    border: 1px solid #e3e7ea;
+    border-radius: 6px;
+    background-color: #ffffff; /* Couleur de fond blanche pour chaque question */
+    transition: all 0.3s ease;
+  }
+  
+  /* Style pour la question */
+  .faq-question {
+    padding: 15px 20px;
+    background-color: #d1ecf1; /* Bleu clair pour indiquer qu'il est cliquable */
+    color: #0c5476;
+    font-weight: 500;
+    border-bottom: 1px solid #e3e7ea;
+    border-radius: 6px 6px 0 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .faq-question:hover {
+    background-color: #bee5eb; /* Changement de couleur au hover */
+  }
+  
+  /* Style pour la réponse */
+  .faq-answer {
+    padding: 15px 20px;
+    background-color: #e0ecf7;
+    border-radius: 0 0 6px 6px;
+    border-top: none;
+  }
+  
+  /* questions faq  */
+
+  .questionFaq {
+    width: 100%;
+    padding: 15px 20px;
+    background-image: url("faq.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
