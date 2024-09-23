@@ -117,7 +117,7 @@ const Dashboard = () => {
           boxShadow="0 0px 20px 0px #A0A0A0"
         >
           <Typography color="#000000" variant="h5" fontWeight="600">
-            Campagne
+          Dépenses et coûts supplémentaires
           </Typography>
           <Box
             display="flex"
@@ -150,7 +150,7 @@ const Dashboard = () => {
             color="#000000"
             sx={{ padding: "30px 30px 0 30px" }}
           >
-            Sales Quantity
+            L'évaluation annuelle
           </Typography>
           <Box height="350px" mt="-20px" ml="-280px">
             <BarChart isDashboard={true} />
