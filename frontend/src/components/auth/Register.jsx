@@ -36,10 +36,10 @@ const Register = () => {
         });
       setIsAuthenticated(true);
       navigate("/");
-      toast.success(res.data);
+      toast.success(res.data.message);
     } catch (error) {
-      toast.error(error.response.data);
-      console.log(error.response.data);
+      toast.error(error.response.data.message);
+      console.log(error.response.data.message);
     }
   };
 
