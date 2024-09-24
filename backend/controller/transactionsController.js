@@ -4,12 +4,13 @@ import Transaction from "../models/transactionSchema.js";
 export const transaction = async (req, res) => {
     // create new transaction document
     try {
-        const {user, date, cost} = req.body;
-        if (!user || !date || !cost) {
+        const {user, department, date, cost} = req.body;
+        if (!user || !department || !date || !cost) {
             return res.status(404).json({success: false, message: "All fields are required"})
         }
         const newTransaction = await Transaction.create({
             user,
+            department,
             date,
             cost
         })
