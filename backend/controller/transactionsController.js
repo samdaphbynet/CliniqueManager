@@ -31,7 +31,7 @@ export const transaction = async (req, res) => {
 // function that get all transactions
 export const getAllTransaction = async (req, res) => {
     try {
-        const allTransactions = await Transaction.find();
+        const allTransactions = await Transaction.find().sort({$natural: -1});
         if (allTransactions.length < 1) {
             return res.status(404).json({success: false, message: "No transactions found"})
         }
