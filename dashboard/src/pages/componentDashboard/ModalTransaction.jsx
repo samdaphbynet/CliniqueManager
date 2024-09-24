@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 import { Context } from "../../index";
 import { department } from "../../constants/mockData";
 
-const ModalTransaction = ({ open, handleClose }) => {
+const ModalTransaction = ({ open, handleClose, onTransactionAdded }) => {
   const { baseUrl } = useContext(Context);
 
   const [transaction, setTransaction] = useState({
@@ -54,6 +54,7 @@ const ModalTransaction = ({ open, handleClose }) => {
       );
       if (response) {
         toast.success("Transaction ajoutée avec succès");
+        onTransactionAdded();
         handleClose();
       } else {
         toast.error(

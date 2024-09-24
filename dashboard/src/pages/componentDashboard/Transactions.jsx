@@ -13,19 +13,26 @@ const Transactions = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  // function that fetch all transactions
+  const fetchTransactions = async () => {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/api/v1/transaction/getall`
+      );
+      setTransactions(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    const fetchTransactions = async () => {
-      try {
-        const response = await axios.get(
-          `${baseUrl}/api/v1/transaction/getall`
-        );
-        setTransactions(response.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchTransactions();
   }, []);
+
+  // 
+  const handleTransactionAdedd = () => {
+    fetchTransactions();
+  }
 
   return (
     <Box
@@ -53,7 +60,7 @@ const Transactions = () => {
           </Button>
         </Typography>
       </Box>
-      <ModalTransaction open={open} handleClose={handleClose}/>
+      <ModalTransaction open={open} handleClose={handleClose} onTransactionAdded={handleTransactionAdedd}/>
       {transactions.map((transaction, i) => (
         <Box
           key={`${transaction._id}-${i}`}
