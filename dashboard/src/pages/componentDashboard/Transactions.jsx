@@ -70,17 +70,29 @@ const Transactions = () => {
           borderBottom={`4px solid #00AEFF`}
           p="15px"
         >
-          <Box borderRight="1px solid #CCCCCCFF" pr="5px">
+          <Box borderRight="1px solid #CCCCCCFF" pl="3px" width="190px">
             <Typography color="#0077FF" variant="h6" fontWeight="500">
               {transaction._id}
             </Typography>
             <Typography color="#000000">{transaction.user}</Typography>
           </Box>
-          <Box borderRight="1px solid #CCCCCCFF" pr="5px">
+          <Box 
+            borderRight="1px solid #CCCCCCFF" 
+            pl="3px" 
+            width="110px" 
+            height="40px" 
+            display="flex" 
+            justifyContent="start" 
+            alignItems="center"
+          >
             <Typography color="#000000">{transaction.department}</Typography>
           </Box>
-          <Box color="#575757" borderRight="1px solid #CCCCCCFF" pr="5px">
-            {new Date(transaction.date).toLocaleDateString()}
+          <Box color="#575757">
+            {new Date(transaction.date).toLocaleDateString("fr-FR",{
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            })}
           </Box>
           <Box
             backgroundColor="#00FFFF"
