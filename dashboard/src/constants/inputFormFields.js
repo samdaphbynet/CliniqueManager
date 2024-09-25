@@ -34,11 +34,6 @@ export const inputFormFields = [
         label: 'genre',
         type: "text"
     },
-    {
-        name: 'doctorDepartement',
-        label: 'department',
-        type: "text"
-    },
     
 ]
 
