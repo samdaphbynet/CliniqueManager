@@ -76,7 +76,7 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
                     transform: "translate(-50%, -50%)",
                     width: "45%",
                     height: "auto",
-                    backgroundColor: "#D8D8D8",
+                    backgroundColor: "#CACACAFF",
                     boxShadow: "0 0px 20px 0px #9C9C9C",
                     p: 4,
                 }}
@@ -109,8 +109,9 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
                 transform: "translate(-50%, -50%)",
                 width: "45%",
                 height: "auto",
-                backgroundColor: "#D8D8D8",
-                boxShadow: "0 0px 20px 0px #9C9C9C",
+                backgroundColor: "#C5D7D8FF",
+                border: "2px solid #000000FF",
+                boxShadow: "0 0px 15px 0px #9C9C9C",
                 p: 4,
             }}
             >
@@ -143,6 +144,7 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
                             borderRadius: "4px",
                             marginBottom: "10px",
                             backgroundColor: "#F0F0F0",
+                            border: "1px solid #8B8B8BFF",
                         }}
                         InputLabelProps={{ style: { color: "#000000" }}}
                         InputProps={{ style: { color: "#000000" }}}
@@ -162,6 +164,7 @@ const ModalEditDoctor = ({ open, onClose, idDoctor }) => {
                     borderRadius: "4px",
                     marginBottom: "10px",
                     backgroundColor: "#F0F0F0",
+                    border: "1px solid #8B8B8BFF",
                     }}
                 >
                     <InputLabel sx={{ color: "#000000" }}>Department</InputLabel>
