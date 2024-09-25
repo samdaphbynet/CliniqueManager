@@ -39,10 +39,10 @@ app.use(cors({
 }));
 
 // configure fileupload middleware
-// app.use(fileUpload({
-//     useTempFiles: true,
-//     tempFileDir: "/tmp/"
-// }))
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/"
+}))
 
 app.get("/", (req, res) => {
     res.json("server runing...")
