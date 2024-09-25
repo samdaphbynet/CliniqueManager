@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 const Bar = () => {
 
   return (
-    <Box m="20px">
+    <Box mt="6%" ml="300px" display="flex" flexDirection="column">
 
       <Header title="Bar Chart" subtitle="Simple Bar Chart" />
 
