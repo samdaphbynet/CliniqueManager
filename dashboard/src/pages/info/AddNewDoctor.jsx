@@ -1,12 +1,13 @@
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { inputFormFields } from "../../constants/inputFormFields";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, FormControl, InputLabel, TextField, Typography, Select, MenuItem } from "@mui/material";
 import { Header } from "../../components";
 import AddDoctor from "../../components/AddDoctor"
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Context } from "../../index";
+import { department } from "../../constants/mockData";
 
 const AddNewDoctor = () => {
   const [doctorInfo, setDoctorInfo] = useState({
@@ -20,6 +21,8 @@ const AddNewDoctor = () => {
     doctorDepartement: "",
     docAvatar: null,
   });
+
+  console.log(doctorInfo)
   
   const [docAvatarPrev, setDocAvatarPrev] = useState("");
   const { isAuthenticated, baseUrl, isCollapsed } = useContext(Context);
@@ -190,11 +193,47 @@ const AddNewDoctor = () => {
                 }
               />
             ))}
+            <FormControl
+                fullWidth
+                sx={{
+                  backgroundColor: "#F0F0F0",
+                  color: "black",
+                  mb: "10px",
+                  borderRadius: "4px",
+                  border: "1px solid #ccc",
+                }}
+              >
+                <InputLabel
+                  sx={{ color: "black" }}
+                  id="demo-simple-select-label"
+                >
+                  Department
+                </InputLabel>
+                <Select
+                  sx={{
+                    color: "black",
+                  }}
+                  value={doctorInfo.doctorDepartement}
+                  label="Department"
+                  onChange={(e) => {
+                    setDoctorInfo({
+                      ...doctorInfo,
+                      doctorDepartement: e.target.value,
+                    });
+                  }}
+                >
+                  {department.map((dep) => (
+                    <MenuItem key={dep.name} value={dep.name}>
+                      {dep.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
           </Box>
 
           <Box display="flex" justifyContent="end" mt="30px">
             <Button type="submit" color="secondary" variant="contained">
-              Créer le nouveau médecin
+              Ajouter le nouveau médecin
             </Button>
           </Box>
         </form>
