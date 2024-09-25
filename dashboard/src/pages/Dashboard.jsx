@@ -152,7 +152,7 @@ const Dashboard = () => {
           >
             L'évaluation annuelle
           </Typography>
-          <Box height="350px" mt="-20px" ml="-280px">
+          <Box height="350px" mt="-20px" >
             <BarChart isDashboard={true} />
           </Box>
         </Box>
