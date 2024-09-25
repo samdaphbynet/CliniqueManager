@@ -82,6 +82,7 @@ const Document = () => {
       {/* footer */}
       <Box 
         sx={{
+          marginLeft: isCollapsed ? "100px" : "300px",
           height: "80px", 
           backgroundColor:"#fff", 
           mt: "40px", 
