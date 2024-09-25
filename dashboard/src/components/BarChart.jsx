@@ -41,7 +41,7 @@ const BarChart = ({ isDashboard}) => {
             colors={{ scheme: "dark2" }}
             valueScale={{ type: "linear" }}
             indexScale={{ type: "band", round: true }}
-            margin={{ top: 50, right: 130, bottom: 50, left: 360 }}
+            margin={{ top: 50, right: 130, bottom: 50, left: 50 }}
             defs={[
                 {
                     id: "dots",
