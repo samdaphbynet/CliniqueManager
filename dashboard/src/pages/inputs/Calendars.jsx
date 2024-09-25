@@ -88,7 +88,7 @@ const Calendars = () => {
 
 
   return (
-    <Box m={isCollapsed ? "80px 20px 20px 100px" : "80px 20px 20px 300px"}>
+    <Box m={isCollapsed ? "120px 20px 20px 100px" : "120px 20px 20px 300px"}>
       <Box m="5px 20px" display="flex" justifyContent="space-between" alignItems="center">
         <Header title="Calendrier" subtitle="Gérer tout les rendez-vous de vous patients" />
         <ModalAppointment />
@@ -173,6 +173,30 @@ const Calendars = () => {
               right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
             }}
           />
+        </Box>
+      </Box>
+
+      {/* footer */}
+      <Box 
+        sx={{
+          height: "80px", 
+          backgroundColor:"#fff", 
+          mt: "40px", 
+          mb:"20px", 
+          color: "black",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          p: "40px",
+          borderRadius: "10px",
+        }}>
+        <Box>
+          <Typography>
+            Copyright © 2024 ClincPlus, All rights reserved.
+          </Typography>
+        </Box>
+        <Box sx={{borderBottom: "2px solid black"}}>
+          <Typography>Privacy Policy | Terms & Conditions</Typography>
         </Box>
       </Box>
     </Box>
