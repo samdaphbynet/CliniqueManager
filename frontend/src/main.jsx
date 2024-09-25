@@ -8,7 +8,7 @@ export const Context = createContext({isAuthenticated: false})
 const AppWrapper = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
-  const baseUrl = import.meta.env.VITE_BACKEND_API_VERCEL
+  const baseUrl = import.meta.env.VITE_BACKEND_API_RENDER
 
   return (
     <Context.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, baseUrl}}>
